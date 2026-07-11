@@ -1,0 +1,34 @@
+# Glasswork gitleaks config — extends the default ruleset with custom rules
+# for the credential formats the default set missed (Nebius v1., RocketRide rr_/tk_/pk_, Butterbase bb_sk_).
+title = "glasswork gitleaks"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "nebius-token-factory-key"
+description = "Nebius Token Factory static API key (v1.Cm…)"
+regex = '''v1\.Cm[A-Za-z0-9._\-+/=]{40,}'''
+keywords = ["v1.Cm"]
+
+[[rules]]
+id = "rocketride-token"
+description = "RocketRide account/webhook token (rr_/tk_/pk_ + long hex)"
+regex = '''\b(rr_|tk_|pk_)[0-9a-f]{20,}\b'''
+keywords = ["rr_", "tk_", "pk_"]
+
+[[rules]]
+id = "butterbase-secret-key"
+description = "Butterbase secret key (bb_sk_…)"
+regex = '''\bbb_sk_[A-Za-z0-9]{12,}\b'''
+keywords = ["bb_sk_"]
+
+[allowlist]
+description = "Redaction placeholders and truncated display prefixes are not secrets"
+regexes = [
+  '''REDACTED''',
+  '''\[redacted\]''',
+  '''bb_sk_\.\.\.''',
+  '''bb_sk_xxx''',
+  '''tk_83947c(…|\.\.\.)''',   # truncated run-id display prefix
+]

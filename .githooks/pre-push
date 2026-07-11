@@ -1,0 +1,24 @@
+#!/bin/sh
+# Glasswork pre-push guard: block the push if gitleaks finds a secret.
+# Enable once per clone:  git config core.hooksPath .githooks
+set -e
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "⚠ gitleaks not installed — skipping secret scan (install: brew install gitleaks)"
+  exit 0
+fi
+
+CFG="$(git rev-parse --show-toplevel)/.gitleaks.toml"
+echo "🔍 gitleaks: scanning history + working tree before push…"
+
+if ! gitleaks git   --no-banner --redact -c "$CFG"; then
+  echo "⛔ gitleaks found secrets in git history — push blocked. Redact + rewrite, then retry."
+  exit 1
+fi
+if ! gitleaks dir . --no-banner --redact -c "$CFG"; then
+  echo "⛔ gitleaks found secrets in the working tree — push blocked. Remove them, then retry."
+  exit 1
+fi
+
+echo "✅ gitleaks: clean."
+exit 0

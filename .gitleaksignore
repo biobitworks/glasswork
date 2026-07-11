@@ -1,0 +1,12 @@
+# Accepted historical findings — REVOKED credential, do not treat as live.
+#
+# The RocketRide account key (rr_c7…) hardcoded as a fallback in
+# partners/rr_pipeline.mjs and partners/rr_explore.mjs at commit 046c1dd was
+# REVOKED by the operator on 2026-07-11 and replaced with an env-only reference
+# in commit 479a004. It is dead. Full context: docs/SECURITY_INCIDENT_2026-07-11.md.
+#
+# These two fingerprints are ignored so the pre-push hook and CI do not
+# perpetually re-flag a revoked credential in already-published history.
+# NEVER add a fingerprint here to silence a LIVE secret — rotate + remove it instead.
+046c1dd40f91826b2bf577658b985948cbf8a5f7:partners/rr_explore.mjs:rocketride-token:4
+046c1dd40f91826b2bf577658b985948cbf8a5f7:partners/rr_pipeline.mjs:rocketride-token:4
