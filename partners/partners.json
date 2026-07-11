@@ -20,10 +20,19 @@
     "sandbox_id": "c35104fe-c2e1-45cb-bac1-4abb13ff1e44"
   },
   "neo4j": {
-    "status": "export",
-    "label": "Decision + custody graph exported (loadable Cypher / JSON)",
+    "status": "now",
+    "label": "Loaded into a live Neo4j AuraDB instance",
+    "instance": "Instance01",
     "nodes": 58,
-    "edges": 86
+    "edges": 86,
+    "labels": [
+      "Run:24",
+      "Model:12",
+      "CustodyRoot:12",
+      "Decision:7",
+      "Doc:2",
+      "Citation:1"
+    ]
   },
   "rocketride": {
     "status": "connected",

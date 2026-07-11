@@ -1,0 +1,19 @@
+{
+  "provider": "neo4j-auradb",
+  "uri": "neo4j+s://c73593e6.databases.neo4j.io",
+  "instance": "Instance01",
+  "loaded": true,
+  "statements_run": 148,
+  "statements_failed": 0,
+  "node_count": 58,
+  "edge_count": 86,
+  "labels": [
+    "Run:24",
+    "Model:12",
+    "CustodyRoot:12",
+    "Decision:7",
+    "Doc:2",
+    "Citation:1"
+  ],
+  "verified_at": "2026-07-11T01:02:29.377Z"
+}
