@@ -45,6 +45,8 @@ pipeline/run.mjs               reproducible orchestrator: runs the model ladder,
 pipeline/enrich.mjs            adds parse-status labels to runs
 data/model_catalog.seed.json   the open-weight model ladder (IDs + list pricing)
 data/results.sample.json       a full sample output (models, runs, scores, custody leaves/roots) — verify the Merkle roots offline
+partners/glasswork_pipeline.public.json  secret-free RocketRide Cloud pipeline (webhook -> llm_nebius -> answers), community-runnable
+partners/rr_pipeline.mjs        runs that pipeline on RocketRide Cloud
 ```
 
 ## Reproduce
@@ -61,6 +63,31 @@ node pipeline/enrich.mjs   # -> parse-status labels
 ```
 
 Scoring is deterministic (temperature 0, rule-based matcher), so re-running reproduces the same scores and the same custody roots for the same model outputs.
+
+## Run the same task on RocketRide Cloud
+
+The third inference route runs the extraction as a **RocketRide Cloud pipeline** (`webhook → llm_nebius → answers`) on Nebius Llama-3.3-70B — a genuinely different route from the Butterbase gateway that returns the same claims.
+
+The pipeline definition is `partners/glasswork_pipeline.public.json` — **secret-free**: the model key is a `${ROCKETRIDE_NEBIUS_KEY}` placeholder that RocketRide substitutes from your env at run time, so no key is ever written to disk.
+
+```bash
+export ROCKETRIDE_API_KEY=rr_...     # your RocketRide key (auth)
+export ROCKETRIDE_NEBIUS_KEY=...     # your Nebius Token Factory key (substituted into the pipeline)
+```
+
+```js
+import { RocketRideClient, Question } from 'rocketride';
+const c = new RocketRideClient({ auth: process.env.ROCKETRIDE_API_KEY, uri: 'https://api.rocketride.ai' });
+await c.connect();
+const { token } = await c.use({ filepath: 'partners/glasswork_pipeline.public.json' });
+const q = new Question({ expectJson: true });
+q.addContext('<your document text>');
+q.addQuestion('Extract the factual claims as a JSON array of {claim, supporting_span}.');
+console.log((await c.chat({ token, question: q })).answers);
+await c.terminate(token); await c.disconnect();
+```
+
+It's also published to RocketRide Cloud as a named template (`glasswork-claim-extraction`) and a manual deployment, so it shows in the RocketRide monitor and can be launched from there.
 
 ## Method / prior work
 

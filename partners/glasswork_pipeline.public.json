@@ -1,0 +1,48 @@
+{
+  "description": "Glasswork — extract factual claims + supporting spans from a document via a Nebius Llama-3.3-70B node (webhook -> llm -> answers). Set ROCKETRIDE_NEBIUS_KEY to your Nebius Token Factory key. Ref: github.com/biobitworks/glasswork",
+  "version": 1,
+  "source": "src",
+  "components": [
+    {
+      "id": "src",
+      "provider": "webhook",
+      "name": "Webhook",
+      "config": {
+        "hideForm": true,
+        "type": "webhook",
+        "mode": "Source"
+      }
+    },
+    {
+      "id": "llm",
+      "provider": "llm_nebius",
+      "name": "Nebius",
+      "config": {
+        "profile": "llama-3-3-70b",
+        "llama-3-3-70b": {
+          "apikey": "${ROCKETRIDE_NEBIUS_KEY}"
+        }
+      },
+      "input": [
+        {
+          "lane": "questions",
+          "from": "src"
+        }
+      ]
+    },
+    {
+      "id": "resp",
+      "provider": "response_answers",
+      "name": "Return Answers",
+      "config": {
+        "laneName": "answers"
+      },
+      "input": [
+        {
+          "lane": "answers",
+          "from": "llm"
+        }
+      ]
+    }
+  ]
+}
