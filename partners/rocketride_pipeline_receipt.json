@@ -1,0 +1,154 @@
+{
+  "ran": true,
+  "node": "llm_nebius",
+  "pipeline": {
+    "description": "Glasswork claim-extraction (Nebius Llama-3.3-70B) cloud run",
+    "version": 1,
+    "source": "src",
+    "components": [
+      {
+        "id": "src",
+        "provider": "webhook",
+        "name": "Webhook",
+        "config": {
+          "hideForm": true,
+          "type": "webhook",
+          "mode": "Source"
+        }
+      },
+      {
+        "id": "llm",
+        "provider": "llm_nebius",
+        "name": "Nebius",
+        "config": {
+          "profile": "llama-3-3-70b",
+          "llama-3-3-70b": {
+            "apikey": "REDACTED_NEBIUS_KEY_stored_in_~/.config/ai-keys/keys.env"
+          }
+        },
+        "input": [
+          {
+            "lane": "questions",
+            "from": "src"
+          }
+        ]
+      },
+      {
+        "id": "resp",
+        "provider": "response_answers",
+        "name": "Return Answers",
+        "config": {
+          "laneName": "answers"
+        },
+        "input": [
+          {
+            "lane": "answers",
+            "from": "llm"
+          }
+        ]
+      }
+    ]
+  },
+  "token": "tk_[redacted]",
+  "input": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy. It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+  "output": {
+    "answers": [
+      [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy."
+        },
+        {
+          "claim": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll."
+        }
+      ]
+    ],
+    "name": "Question 1",
+    "path": "",
+    "result_types": {
+      "answers": "answers"
+    },
+    "objectId": "ecbe44a8-fc58-5a88-a4eb-ef17ab1518f0"
+  },
+  "status": {
+    "name": "83947ce4.src.Webhook",
+    "project_id": "9b5cca5b-56b1-4df2-b38b-9dfbd8948be3",
+    "source": "src",
+    "completed": false,
+    "state": 3,
+    "startTime": 1783732325.2939272,
+    "endTime": 0,
+    "debuggerAttached": false,
+    "status": "Webhook ready - system is ready to accept requests",
+    "warnings": [],
+    "errors": [],
+    "currentObject": "webhook://WebHook",
+    "currentSize": 0,
+    "notes": [
+      {
+        "url-text": "Webhook interface URL",
+        "url-link": "{host}/webhook",
+        "auth-text": "Public Authorization Key",
+        "auth-key": "pk_[redacted]",
+        "token-text": "Private Token",
+        "token-key": "tk_[redacted]"
+      }
+    ],
+    "totalSize": 1090,
+    "totalCount": 1,
+    "completedSize": 1090,
+    "completedCount": 1,
+    "failedSize": 0,
+    "failedCount": 0,
+    "wordsSize": 0,
+    "wordsCount": 0,
+    "rateSize": 0,
+    "rateCount": 0,
+    "serviceUp": true,
+    "exitCode": 0,
+    "exitMessage": "",
+    "pipeflow": {
+      "totalPipes": 1,
+      "byPipe": {
+        "0": []
+      }
+    },
+    "metrics": {
+      "cpu_percent": 0,
+      "cpu_memory_mb": 294.8125,
+      "gpu_memory_mb": 0,
+      "peak_cpu_percent": 21.85,
+      "peak_cpu_memory_mb": 294.8125,
+      "peak_gpu_memory_mb": 0,
+      "avg_cpu_percent": 0.9447949047803297,
+      "avg_cpu_memory_mb": 294.00391395890864,
+      "avg_gpu_memory_mb": 0
+    },
+    "tokens": {
+      "cpu_utilization": 0.6,
+      "cpu_memory": 0.9,
+      "gpu_memory": 0,
+      "gpu_inference": 0,
+      "custom": {},
+      "total": 1.5
+    }
+  },
+  "server_version": 1,
+  "verified_at": "2026-07-11T01:13:30.058Z",
+  "notes": [
+    "validate={\"components\":[{\"config\":{\"hideForm\":true,\"mode\":\"Source\",\"type\":\"webhook\"},\"id\":\"src\",\"name\":\"Webhook\",\"provider\":\"webhook\"},{\"config\":{\"llama-3-3-70b\":{\"apikey\":\"REDACTED_NEBIUS_KEY_stored_in_~/.config/ai-keys/keys.env\"",
+    "status.completed stayed false because the webhook source node is a persistent HTTP listener that never self-terminates; the chat() call returned a real terminal PIPELINE_RESULT with populated answers, which is the pipeline output.",
+    "validate() reported ccode 40 wanting a {pipeline:{...}} wrapper, but use()+chat() ran the same raw config successfully and returned real output."
+  ],
+  "extracted_claims": [
+    {
+      "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+      "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy."
+    },
+    {
+      "claim": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+      "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll."
+    }
+  ]
+}

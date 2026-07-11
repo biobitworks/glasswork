@@ -35,10 +35,19 @@
     ]
   },
   "rocketride": {
-    "status": "connected",
-    "label": "Connected to RocketRide Cloud (authenticated, node catalog enumerated)",
+    "status": "now",
+    "label": "Ran a real Cloud pipeline (webhook -> llm_nebius -> answers) that returned the extracted claims",
+    "connected": true,
     "node_count": 128,
     "user": "Byron Lee",
-    "uri": "wss://api.rocketride.ai/task/service"
+    "uri": "wss://api.rocketride.ai/task/service",
+    "pipeline": {
+      "run_id_prefix": "tk_83947ce4",
+      "node": "llm_nebius",
+      "model": "Nebius Llama-3.3-70B",
+      "extracted_claims": 2,
+      "receipt": "partners/rocketride_pipeline_receipt.json",
+      "note": "The webhook source node is a persistent HTTP listener, so status.completed stayed false; the terminal PIPELINE_RESULT carried the answers (the extracted claims)."
+    }
   }
 }

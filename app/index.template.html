@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Glasswork — audit every answer</title>
+<meta name="description" content="A thoughtful agent that measures open models on your task, picks the cheapest that passes, and writes a recompute-verifiable custody receipt for every call. Built on Butterbase." />
+<style>
+  :root{
+    --ground:#0f0716; --ground2:#160c22; --panel:#1a1030; --panel2:#221639; --paneledge:#2e2148;
+    --ivory:#f5f0e4; --muted:#b3a7c9; --faint:#7d7396;
+    --gold:#d4bd6a; --gold2:#b3a369; --purple:#9a78e0; --purple2:#5f249f;
+    --copper:#cf7a52; --slate:#6f6784; --green:#69c58c; --red:#e0684a;
+    --line:#2b1f45; --shadow:0 18px 50px -20px rgba(0,0,0,.7);
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;scroll-behavior:smooth}
+  body{background:radial-gradient(1200px 700px at 78% -8%,#241640 0%,var(--ground) 55%) fixed,var(--ground);
+    color:var(--ivory);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:var(--gold);text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  .eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);font-weight:700}
+  h1,h2,h3{line-height:1.15;margin:0}
+  h2{font-size:1.55rem;letter-spacing:-.01em}
+  section{padding:52px 0;border-top:1px solid var(--line);scroll-margin-top:64px}
+  .lead{color:var(--muted);max-width:72ch}
+  .mono{font-family:var(--mono)}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.02em}
+  .pill.pass{background:rgba(105,197,140,.14);color:var(--green);border:1px solid rgba(105,197,140,.35)}
+  .pill.fail{background:rgba(111,103,132,.16);color:#a89fbe;border:1px solid rgba(111,103,132,.4)}
+  .pill.warn{background:rgba(207,122,82,.15);color:var(--copper);border:1px solid rgba(207,122,82,.4)}
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--paneledge);border-radius:16px;box-shadow:var(--shadow)}
+  .btn{appearance:none;cursor:pointer;font-family:var(--sans);font-weight:700;font-size:.9rem;color:var(--ground);
+    background:linear-gradient(180deg,var(--gold),var(--gold2));border:0;border-radius:11px;padding:11px 20px;transition:transform .12s ease,filter .12s ease;display:inline-block}
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+  .btn.ghost{background:transparent;color:var(--ivory);border:1px solid var(--paneledge)}
+  .btn:disabled{opacity:.5;cursor:default;transform:none}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(15,7,22,.78);border-bottom:1px solid var(--line)}
+  nav .row{display:flex;align-items:center;gap:18px;height:56px}
+  nav .brand{font-weight:800;letter-spacing:-.02em;font-size:1.05rem}
+  nav .brand .d{color:var(--gold)}
+  nav .links{display:flex;gap:16px;margin-left:auto;font-size:.86rem}
+  nav .links a{color:var(--muted)} nav .links a:hover{color:var(--ivory)}
+  nav .btn{padding:7px 14px;font-size:.82rem}
+  @media(max-width:820px){nav .links{display:none}}
+
+  /* hero */
+  .hero{padding:64px 0 20px;border-top:0;position:relative}
+  .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;border:1px solid var(--paneledge);
+    background:rgba(20,12,34,.6);font-size:.76rem;color:var(--muted)}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(105,197,140,.16)}
+  .hero h1{font-size:clamp(2.3rem,5.5vw,3.7rem);letter-spacing:-.025em;margin:20px 0 0;font-weight:800}
+  .hero h1 .accent{background:linear-gradient(120deg,var(--gold),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{font-size:clamp(1.05rem,2.3vw,1.32rem);color:var(--ivory);margin:16px 0 0;max-width:46ch;font-weight:500}
+  .subtag{color:var(--muted);margin:14px 0 0;max-width:66ch}
+  .heroctas{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+  .herometa{display:flex;gap:26px;flex-wrap:wrap;margin-top:30px;color:var(--faint);font-size:.82rem}
+  .herometa b{color:var(--ivory);font-variant-numeric:tabular-nums}
+
+  .grid{display:grid;gap:16px}
+  .kpis{grid-template-columns:repeat(4,1fr);margin-top:8px}
+  @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{padding:18px}
+  .kpi .n{font-size:1.8rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .kpi .l{color:var(--muted);font-size:.82rem;margin-top:2px}
+  .kpi .n.green{color:var(--green)} .kpi .n.gold{color:var(--gold)} .kpi .n.purple{color:var(--purple)}
+
+  /* how it works steps */
+  .whatis{padding:20px;margin-top:8px;border-left:3px solid var(--gold)}
+  .whatis b{color:var(--gold)}
+  .steps{grid-template-columns:repeat(4,1fr);margin-top:20px}
+  @media(max-width:820px){.steps{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr}}
+  .step{padding:18px;position:relative}
+  .step .num{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-weight:800;background:var(--panel2);border:1px solid var(--paneledge);color:var(--gold);font-size:.9rem}
+  .step h3{font-size:1rem;margin-top:12px}
+  .step p{color:var(--muted);font-size:.86rem;margin:.4rem 0 0}
+
+  /* deterministic core flow */
+  .coreflow{padding:22px;margin-top:16px;display:flex;align-items:stretch;gap:14px;flex-wrap:wrap;justify-content:center}
+  .cf-node{flex:1;min-width:180px;padding:16px;border-radius:12px;border:1px solid var(--paneledge);background:var(--panel2);text-align:center}
+  .cf-node.core{border-color:var(--gold);background:linear-gradient(180deg,rgba(212,189,106,.10),var(--panel2))}
+  .cf-node.out{border-color:var(--green)}
+  .cf-k{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--gold2)}
+  .cf-node.core .cf-k{color:var(--gold)} .cf-node.out .cf-k{color:var(--green)}
+  .cf-b{margin-top:8px;font-size:.9rem;color:var(--ivory);font-weight:600}
+  .cf-s{font-size:.74rem;color:var(--faint);font-weight:400;font-family:var(--mono)}
+  .cf-arrow{display:flex;align-items:center;color:var(--purple);font-size:1.5rem;font-weight:700}
+  @media(max-width:640px){.cf-arrow{transform:rotate(90deg)}}
+
+  /* error surface */
+  .errsel{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0}
+  .errgrid{grid-template-columns:1fr 1fr}
+  @media(max-width:760px){.errgrid{grid-template-columns:1fr}}
+  .errdoc{padding:18px}
+  .errdoc .eh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+  .errdoc .eh h3{font-size:.95rem}
+  .claimrow{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--line);font-size:.86rem}
+  .claimrow .mk{flex:none;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font-weight:800;font-size:.8rem;margin-top:1px}
+  .claimrow.hit .mk{background:rgba(105,197,140,.16);color:var(--green)}
+  .claimrow.miss .mk{background:rgba(224,104,74,.14);color:var(--red)}
+  .claimrow.miss .ct{color:var(--muted)}
+  .flagbox{margin-top:12px;padding:10px 12px;border-radius:10px;border:1px solid var(--paneledge);background:rgba(207,122,82,.06);font-size:.82rem;color:var(--muted)}
+  .flagbox.clean{background:rgba(105,197,140,.06);color:var(--muted)}
+
+  /* task / docs */
+  .docs{grid-template-columns:1fr 1fr}
+  @media(max-width:760px){.docs{grid-template-columns:1fr}}
+  .doc{padding:18px}
+  .doc h3{font-size:.98rem}
+  .doc p{color:var(--muted);font-size:.9rem;margin:.5rem 0 0}
+  .doc .goldn{margin-top:12px;font-size:.78rem;color:var(--faint)}
+
+  /* chart */
+  .chartwrap{position:relative;overflow-x:auto}
+  svg{display:block;max-width:100%;height:auto}
+  .axislabel{fill:var(--muted);font-size:12px;font-family:var(--sans)}
+  .ticklabel{fill:var(--faint);font-size:11px;font-family:var(--mono)}
+  .gridline{stroke:var(--line);stroke-width:1}
+  .ptlabel{fill:var(--ivory);font-size:11px;font-family:var(--sans);font-weight:600}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:.8rem;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .lg-dot{width:11px;height:11px;border-radius:50%}
+  .tooltip{position:absolute;pointer-events:none;opacity:0;transition:opacity .1s;background:#0c0716;border:1px solid var(--paneledge);
+    border-radius:10px;padding:9px 11px;font-size:.78rem;box-shadow:var(--shadow);z-index:5;min-width:180px}
+  .tooltip b{color:var(--ivory)} .tooltip .row{display:flex;justify-content:space-between;gap:14px;color:var(--muted)}
+
+  /* table */
+  .tablewrap{overflow-x:auto;border-radius:14px;border:1px solid var(--paneledge)}
+  table{border-collapse:collapse;width:100%;font-size:.86rem}
+  th,td{padding:10px 12px;text-align:right;white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  thead th{background:var(--ground2);color:var(--muted);font-weight:600;font-size:.76rem;letter-spacing:.03em;text-transform:uppercase;position:sticky;top:0}
+  tbody tr{border-top:1px solid var(--line);cursor:pointer;transition:background .1s}
+  tbody tr:hover{background:rgba(154,120,224,.08)}
+  tbody tr.chosen{background:rgba(212,189,106,.10)}
+  tbody tr.sel{background:rgba(154,120,224,.16)}
+  td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .bar{height:6px;border-radius:3px;background:var(--line);position:relative;min-width:60px;display:inline-block;vertical-align:middle;width:60px}
+  .bar>i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--purple)}
+  .modeltag{display:inline-flex;align-items:center;gap:8px}
+  .tierdot{width:8px;height:8px;border-radius:50%}
+
+  /* decision */
+  .decision{padding:22px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;border:1px solid rgba(212,189,106,.35);
+    background:linear-gradient(180deg,rgba(212,189,106,.09),rgba(34,22,57,.6))}
+  .decision .big{font-size:1.4rem;font-weight:800}
+  .decision .big .m{color:var(--gold)}
+  .decision .why{color:var(--muted);font-size:.9rem;max-width:52ch}
+
+  /* custody */
+  .custody{grid-template-columns:1.1fr 1fr;align-items:start}
+  @media(max-width:820px){.custody{grid-template-columns:1fr}}
+  .receipt{padding:20px}
+  .receipt .sel{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  select{background:var(--ground2);color:var(--ivory);border:1px solid var(--paneledge);border-radius:9px;padding:8px 10px;font-family:var(--mono);font-size:.82rem}
+  .leaf{border:1px solid var(--line);border-radius:11px;padding:12px;margin-top:10px;background:rgba(12,7,22,.45)}
+  .leaf .lh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+  .leaf .lt{font-size:.74rem;color:var(--gold2);letter-spacing:.04em;text-transform:uppercase;font-weight:700}
+  .kv{font-family:var(--mono);font-size:.72rem;color:var(--muted);word-break:break-all;margin-top:3px}
+  .kv b{color:var(--ivory);font-weight:600}
+  .hash{color:var(--purple)}
+  .verifybox{padding:20px;position:sticky;top:70px}
+  .vstatus{display:flex;align-items:center;gap:12px;padding:14px;border-radius:12px;margin-bottom:14px;border:1px solid var(--paneledge);background:var(--ground2)}
+  .vstatus .ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:1.1rem;flex:none}
+  .vstatus.ok .ic{background:rgba(105,197,140,.16);color:var(--green);border:1px solid rgba(105,197,140,.5)}
+  .vstatus.bad .ic{background:rgba(224,104,74,.16);color:var(--red);border:1px solid rgba(224,104,74,.5)}
+  .vstatus.idle .ic{background:var(--panel2);color:var(--faint)}
+  .vstatus .t{font-weight:700} .vstatus .s{color:var(--muted);font-size:.82rem}
+  .vsteps{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-top:8px}
+  .vsteps div{padding:4px 0;border-top:1px dashed var(--line);display:flex;justify-content:space-between;gap:10px}
+  .vsteps .m{color:var(--green)} .vsteps .x{color:var(--red)}
+
+  /* reasoning graph */
+  .graph{display:flex;flex-direction:column;gap:0}
+  .node{padding:13px 16px;border-radius:12px;border:1px solid var(--paneledge);background:var(--panel2);position:relative}
+  .node+.node{margin-top:26px}
+  .node+.node::before{content:"";position:absolute;top:-22px;left:26px;width:2px;height:22px;background:linear-gradient(var(--purple2),var(--purple))}
+  .node .k{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .node .lbl{margin-top:3px;font-size:.92rem}
+  .node.commitment{border-left:3px solid var(--gold)} .node.commitment .k{color:var(--gold)}
+  .node.decision{border-left:3px solid var(--purple)} .node.decision .k{color:var(--purple)}
+  .node.learning{border-left:3px solid var(--green)} .node.learning .k{color:var(--green)}
+  .node.verdict{border-left:3px solid var(--copper)} .node.verdict .k{color:var(--copper)}
+
+  /* AI stack */
+  .stackgrid{grid-template-columns:1fr 1fr;align-items:start}
+  @media(max-width:820px){.stackgrid{grid-template-columns:1fr}}
+  .stacklayer{padding:16px 18px;border-left:3px solid var(--purple);background:rgba(154,120,224,.06);border-radius:0 12px 12px 0;margin-bottom:12px}
+  .stacklayer b{color:var(--ivory)} .stacklayer p{margin:.3rem 0 0;color:var(--muted);font-size:.86rem}
+  .modelchips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+  .chip{font-family:var(--mono);font-size:.72rem;padding:4px 9px;border-radius:8px;border:1px solid var(--paneledge);background:var(--panel2);color:var(--muted)}
+  .chip b{color:var(--ivory)}
+
+  /* pricing */
+  .pricegrid{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:760px){.pricegrid{grid-template-columns:1fr}}
+  .pricecard{padding:20px;text-align:center}
+  .pricecard.hot{border:1px solid var(--gold);background:linear-gradient(180deg,rgba(212,189,106,.10),var(--panel2))}
+  .pricecard .name{font-size:.82rem;color:var(--muted)}
+  .pricecard .amt{font-size:1.7rem;font-weight:800;font-variant-numeric:tabular-nums;margin:6px 0 2px}
+  .pricecard .amt.gold{color:var(--gold)} .pricecard .amt.slate{color:#a89fbe}
+  .pricecard .delta{font-size:.8rem;color:var(--muted)}
+  .pricenote{color:var(--faint);font-size:.82rem;margin-top:14px;max-width:70ch}
+
+  /* ceilings / feat */
+  .ceilings{grid-template-columns:1fr 1fr}
+  @media(max-width:760px){.ceilings{grid-template-columns:1fr}}
+  .ceiling{padding:16px 18px;border-left:3px solid var(--copper);background:rgba(207,122,82,.06);border-radius:0 12px 12px 0}
+  .ceiling b{color:var(--ivory)} .ceiling p{margin:.3rem 0 0;color:var(--muted);font-size:.88rem}
+  .stackflow{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.stackflow{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.stackflow{grid-template-columns:1fr}}
+  .feat{padding:16px}
+  .feat h3{font-size:.9rem;color:var(--gold)}
+  .feat p{color:var(--muted);font-size:.82rem;margin:.4rem 0 0}
+
+  /* FAQ */
+  .faq details{border:1px solid var(--paneledge);border-radius:12px;padding:0 16px;margin-top:10px;background:var(--panel2)}
+  .faq summary{cursor:pointer;padding:14px 0;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--gold);font-size:1.2rem;font-weight:700}
+  .faq details[open] summary::after{content:"–"}
+  .faq details p{color:var(--muted);font-size:.9rem;margin:0 0 16px;padding-top:2px}
+
+  /* sponsors */
+  .sponsors{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:760px){.sponsors{grid-template-columns:1fr}}
+  .sponsor{padding:16px 18px}
+  .sponsor .role{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);font-weight:700}
+  .sponsor .role.now{color:var(--green)}
+  .sponsor h3{font-size:1rem;margin-top:4px}
+  .sponsor p{color:var(--muted);font-size:.85rem;margin:.4rem 0 0}
+  .future{color:var(--faint);font-size:.85rem;margin-top:14px}
+
+  footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--faint);font-size:.82rem}
+  footer .cite{color:var(--muted);max-width:75ch;margin-top:8px}
+  .src{font-family:var(--mono);font-size:.72rem;color:var(--faint)}
+  .flash{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.2s;
+    background:#0c0716;border:1px solid var(--paneledge);border-radius:10px;padding:10px 16px;font-size:.82rem;box-shadow:var(--shadow);z-index:40}
+  .flash.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<script type="application/json" id="glasswork-data">__DATA__</script>
+
+<nav><div class="wrap row">
+  <span class="brand">Glasswork<span class="d">.</span></span>
+  <div class="links">
+    <a href="#demo">Demo</a>
+    <a href="#how">How it works</a>
+    <a href="#core">Determinism</a>
+    <a href="#try">Try it</a>
+    <a href="#errors">Errors</a>
+    <a href="#custody">Verify</a>
+    <a href="#stack">AI stack</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#sponsors">Sponsors</a>
+  </div>
+  <a href="#try" class="btn">Try it ▶</a>
+</div></nav>
+
+<header class="hero wrap">
+  <div class="badge"><span class="dot"></span> Live on Butterbase · <span class="mono" id="srcbadge">reading data…</span></div>
+  <h1>Glasswork<span class="accent">.</span></h1>
+  <p class="tagline">Automate the task. <span style="color:var(--gold)">Audit every answer.</span></p>
+  <p class="subtag">The productivity tax you can't skip is <em>checking the model's work</em>. Glasswork runs your task across a spread of open-source models, scores each on <b>your</b> task, picks the <b>cheapest one that passes</b>, and attaches a tamper-evident custody receipt to every single call — so you can hand off the work and actually trust it.</p>
+  <div class="heroctas">
+    <a href="#demo" class="btn">▶ Watch 60s demo</a>
+    <a href="#try" class="btn ghost">Try it live</a>
+    <a class="btn ghost" href="#how">How it works</a>
+  </div>
+  <div class="herometa">
+    <div><b id="hm-models">–</b> open models</div>
+    <div><b id="hm-corpus">–</b> gold claims</div>
+    <div><b id="hm-precision">–</b> precision, valid-output models</div>
+    <div><b id="hm-receipts">–</b> custody receipts</div>
+  </div>
+</header>
+
+<section class="wrap" id="demo">
+  <div class="eyebrow">See it in 60 seconds</div>
+  <h2>Watch Glasswork run, measure, and prove — end to end</h2>
+  <div class="card" style="padding:14px;margin-top:16px">
+    <video controls preload="metadata" poster="poster.jpg" style="width:100%;border-radius:12px;display:block;background:#0c0716">
+      <source src="demo.mp4" type="video/mp4" />
+      <track kind="captions" src="captions.vtt" srclang="en" label="English" />
+      Your browser can't play embedded video — <a href="demo.mp4">download the demo (MP4)</a>.
+    </video>
+  </div>
+  <p class="lead" style="margin-top:12px">Narrated walkthrough: one task → 12 open models on Butterbase → the cheapest model that passes → the error surface vs a gold standard → a custody receipt you recompute in-browser, and a tampered one rejected. <b>Captions:</b> click <span class="mono">CC</span> in the player. Direct link: <a href="demo.mp4">glasswork.butterbase.dev/demo.mp4</a>.</p>
+  <details style="margin-top:8px">
+    <summary style="cursor:pointer;color:var(--gold);font-weight:600">Transcript</summary>
+    <div style="color:var(--muted);font-size:.9rem;margin-top:10px;display:grid;gap:8px">
+      <div><b style="color:var(--ivory)">1.</b> AI agents save time — until you have to re-check everything they say. Glasswork makes an agent you can hand off to, and audit.</div>
+      <div><b style="color:var(--ivory)">2.</b> Give it a task and an answer key. Glasswork runs it across twelve open models on Butterbase — same prompt, temperature zero.</div>
+      <div><b style="color:var(--ivory)">3.</b> And bigger doesn't win. A 27-billion model beats the 70- and 235-billion ones — the 70-billion even returned invalid JSON. So the agent picks the cheapest model that passes.</div>
+      <div><b style="color:var(--ivory)">4.</b> Most demos stop at an answer. Glasswork shows you where it's wrong — measured against a gold standard, exactly which facts each model missed, and any ungrounded claim flagged.</div>
+      <div><b style="color:var(--ivory)">5.</b> Every answer carries a custody receipt. Press verify, and your browser recomputes the Merkle root. Tamper with one byte and it goes red — reject.</div>
+      <div><b style="color:var(--ivory)">6.</b> It tells you what it can't prove. Custody is provenance, not correctness. One backend, all Butterbase. Glasswork — automate the work, audit every answer.</div>
+    </div>
+  </details>
+</section>
+
+<section class="wrap" id="how">
+  <div class="eyebrow">What it is · how it works</div>
+  <h2>An agent that measures before it trusts</h2>
+  <div class="card whatis">
+    <b>What is Glasswork?</b> A thoughtful productivity agent for document work. Instead of betting on one big model and re-reading everything it says, Glasswork treats model choice as a <b>measurement problem</b>: it grades every open model on your actual task, picks the cheapest one that clears a quality bar you set, and hands you a cryptographic receipt for every call. You get the cheapest reliable answer <em>and</em> a way to audit it.
+  </div>
+  <div class="grid steps" id="steps"></div>
+  <div class="grid kpis" id="kpis" style="margin-top:22px"></div>
+  <p class="lead" style="margin-top:18px"><span id="thesis-line"></span></p>
+</section>
+
+<section class="wrap" id="core">
+  <div class="eyebrow">The deterministic core</div>
+  <h2>Deterministic where it counts</h2>
+  <p class="lead">A custody receipt only means something if the computation around it is <b>reproducible</b>. Glasswork's <b>scoring and custody are fully deterministic</b> — given a recorded output, the same rubric score and the same Merkle root recompute identically, every ingest. The model step runs at temperature 0 (a best-effort knob, not a guarantee) — which is exactly why we <em>hash and bind the bytes that actually ran</em> instead of trusting the model to repeat itself.</p>
+  <div class="card coreflow" id="coreflow">
+    <div class="cf-node in"><div class="cf-k">input</div><div class="cf-b">document + gold standard<br><span class="cf-s">text (this demo) · figures · data · audio · images (roadmap)</span></div></div>
+    <div class="cf-arrow">→</div>
+    <div class="cf-node core"><div class="cf-k">deterministic core</div><div class="cf-b">fixed prompt · temp 0 · rule-based scorer</div></div>
+    <div class="cf-arrow">→</div>
+    <div class="cf-node out"><div class="cf-k">output + FCO</div><div class="cf-b">answer + custody root<br><span class="cf-s">root recomputes identically</span></div></div>
+  </div>
+  <p class="lead" style="margin-top:18px">A Fractal Custody Object binds <b>bytes</b>, not just text — so the same spine scales past a single inference. An <b>entire paper</b> becomes a <b>Fractal Custody Graph</b> over all its parts: text, figures, tables, datasets, images, audio, any media. Bind every part and you can check the whole artifact against a <b>gold standard</b> — not "looks right," but <em>provably the same, byte for byte</em>. This demo is one leaf of that graph; the method is the same all the way up.</p>
+</section>
+
+<section class="wrap" id="try">
+  <div class="eyebrow">Try it — live, on real data</div>
+  <h2>Run the comparison yourself</h2>
+  <p class="lead">This isn't a mockup. Below is a real task run through <b>12 open models</b> on Butterbase's gateway, graded against a hand-labeled gold set. Press <b>Run</b>, read the chart, then jump to <a href="#custody">Verify</a> to recompute a custody receipt in your own browser.</p>
+  <div class="grid docs" id="docs" style="margin-top:18px"></div>
+  <div style="margin-top:18px"><button class="btn" id="runbtn">▶ Run the comparison</button></div>
+
+  <div class="card" style="padding:18px;margin-top:20px">
+    <div class="eyebrow" style="margin-bottom:8px">Accuracy vs. real cost — size buys neither</div>
+    <div class="chartwrap"><div class="tooltip" id="tt"></div><div id="chart"></div></div>
+    <div class="legend">
+      <span><span class="lg-dot" style="background:var(--green)"></span> passes the bar</span>
+      <span><span class="lg-dot" style="background:var(--slate)"></span> below the bar</span>
+      <span><span class="lg-dot" style="background:var(--copper)"></span> invalid JSON (unusable)</span>
+      <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="none" stroke="var(--gold)" stroke-width="2.5"/></svg> the pick</span>
+    </div>
+  </div>
+
+  <div class="eyebrow" style="margin-top:26px">Every model, scored on this corpus</div>
+  <p class="lead" style="margin-top:6px">Click any row to load its custody receipt in the Verify section. Pass bar (fixed <em>before</em> running): precision ≥ <span id="pf-p">0.80</span>, recall ≥ <span id="pf-r">0.75</span>.</p>
+  <div class="tablewrap" style="margin-top:14px"><table id="matrixtbl">
+    <thead><tr><th>Model</th><th>Params</th><th>Precision</th><th>Recall</th><th>F1</th><th>Cost / corpus</th><th>Verdict</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+
+  <div class="card decision" id="decisioncard" style="margin-top:20px"></div>
+</section>
+
+<section class="wrap" id="errors">
+  <div class="eyebrow">The error surface — our edge</div>
+  <h2>Don't just show a result. Show where it's wrong.</h2>
+  <p class="lead">Most paper-to-result agents hand you an answer and stop. Glasswork hands you the answer <b>plus its error surface</b>: measured against a gold standard, exactly which facts each model recovered, which it <b>missed</b>, and a flag on any claim whose evidence isn't in the source (a would-be hallucination). Pick a model and see precisely where it fails.</p>
+  <div class="errsel">
+    <label class="mono" style="color:var(--muted);font-size:.8rem">Model:</label>
+    <select id="errsel"></select>
+    <span class="mono" style="color:var(--faint);font-size:.78rem" id="errsummary"></span>
+  </div>
+  <div class="grid errgrid" id="errgrid"></div>
+</section>
+
+<section class="wrap" id="custody">
+  <div class="eyebrow">Prove it</div>
+  <h2>A custody receipt for every call — recompute it yourself</h2>
+  <p class="lead">Each inference emits two hash leaves — an <b>operational</b> leaf (model, tokens, cost) and a <b>content</b> leaf (hashes of the exact prompt and output bytes) — chained into a per-model Merkle root with RFC&nbsp;6962 domain separation (leaf&nbsp;<span class="mono">0x00</span>, node&nbsp;<span class="mono">0x01</span>; duplicate-last pairing). Press <b>Verify</b> and your browser re-derives the root from the named bytes and compares. <b>Reject iff mismatch.</b></p>
+  <div class="grid custody" style="margin-top:16px">
+    <div class="card receipt">
+      <div class="sel">
+        <label class="mono" style="color:var(--muted);font-size:.8rem">Model:</label>
+        <select id="modelsel"></select>
+      </div>
+      <div id="receiptbody"></div>
+    </div>
+    <div class="card verifybox">
+      <div class="vstatus idle" id="vstatus">
+        <div class="ic" id="vic">•</div>
+        <div><div class="t" id="vtitle">Not verified yet</div><div class="s" id="vsub">Press Verify to recompute the Merkle root in your browser.</div></div>
+      </div>
+      <button class="btn" id="verifybtn" style="width:100%">Verify custody root</button>
+      <div class="vsteps" id="vsteps"></div>
+      <p class="src" style="margin-top:12px">SHA-256 via the browser's Web Crypto (SubtleCrypto). Nothing is sent to a server — the recompute happens on your machine. <a id="bundlelink" href="#" target="_blank" rel="noopener">Download the full dataset (live JSON)</a> to re-derive every root offline.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="stack">
+  <div class="eyebrow">The AI stack</div>
+  <h2>What's under the hood</h2>
+  <div class="grid stackgrid" style="margin-top:16px">
+    <div>
+      <div class="stacklayer"><b>Models — 12 open weights, 1B → 235B</b><p>Five families through Butterbase's OpenAI-compatible gateway, same prompt, temperature 0 for reproducibility.</p><div class="modelchips" id="modelchips"></div></div>
+      <div class="stacklayer"><b>Scoring — deterministic rubric</b><p>Precision penalizes any claim whose supporting span isn't in the document (hallucination); recall measures coverage against the gold set. No LLM judge in the loop.</p></div>
+      <div class="stacklayer"><b>Selection — cheapest that passes</b><p>The agent picks the lowest-cost model meeting the pre-set precision/recall bar on the corpus — a decision recorded as data.</p></div>
+    </div>
+    <div>
+      <div class="stacklayer" style="border-color:var(--gold)"><b>Custody — Fractal Custody Objects</b><p>Two hash leaves per call → a per-model Merkle root, domain-separated (leaf 0x00 / node 0x01). Published method, cited; verifiable in-browser.</p></div>
+      <div class="stacklayer" style="border-color:var(--copper)"><b>Backend — 100% Butterbase</b><p>AI gateway (inference), Postgres + Data API (catalog, gold set, 24 runs, 60 custody records), a serverless function (<span class="mono">results</span>), and the frontend deployment serving this page.</p></div>
+      <div class="eyebrow" style="margin:18px 0 8px">The decision graph (stored in Butterbase)</div>
+      <div class="graph" id="graph"></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="pricing">
+  <div class="eyebrow">Pricing · the economics</div>
+  <h2>Picking right is the product</h2>
+  <p class="lead">Glasswork is an open-method demo — the price that matters is the model spend it saves you. Same task, same pass bar, three strategies (measured, not estimated):</p>
+  <div class="grid pricegrid" id="pricegrid" style="margin-top:18px"></div>
+  <p class="pricenote" id="pricenote"></p>
+</section>
+
+<section class="wrap" id="ceilings">
+  <div class="eyebrow">What we can't prove</div>
+  <h2>Honest ceilings — printed, not buried</h2>
+  <p class="lead">This honesty is the point. An agent you can trust is one that tells you the edges of what it measured.</p>
+  <div class="grid ceilings" style="margin-top:16px">
+    <div class="ceiling"><b>Accuracy is on <em>this</em> task/corpus.</b><p>The numbers are extraction quality on these documents (N shown), not a universal capability claim about any model.</p></div>
+    <div class="ceiling"><b>Custody proves provenance, not correctness.</b><p>A receipt tells you exactly which model produced which bytes at what cost. It does not say the answer is right, and it does not reproduce non-deterministic inference.</p></div>
+    <div class="ceiling"><b>Cost is Butterbase-reported.</b><p>Savings are auditable computation from recorded token counts and the gateway's usage figures — trustworthy, but not an independently proven benchmark.</p></div>
+    <div class="ceiling"><b>An LLM verdict is a signal, never a proof.</b><p>A model saying "this looks wrong" is a detector-arm signal. The custody spine tells you which bytes produced this. They are different things.</p></div>
+  </div>
+</section>
+
+<section class="wrap faq" id="faq">
+  <div class="eyebrow">FAQ</div>
+  <h2>Questions a judge should ask</h2>
+  <div style="margin-top:16px">
+    <details open><summary>Is this real data, or a mockup?</summary><p>Real. Every number is 24 live inferences run through Butterbase's AI gateway and served from the app's own database — you can read it yourself at the public <span class="mono">results</span> function this page fetches.</p></details>
+    <details><summary>Does a custody receipt mean the answer is correct?</summary><p>No — and we say so on the page. Custody proves <em>provenance</em>: which model produced which exact bytes, at what token count and cost, tamper-evident. Whether the extraction is <em>right</em> is a separate question, measured by the precision/recall score.</p></details>
+    <details><summary>Why not just use the biggest model?</summary><p>Because bigger didn't win here. A 27B Gemma beat both the 70B and the 235B on recall, and the 70B Llama emitted invalid JSON on one document — unusable by an automated pipeline. You only find out by measuring on your task.</p></details>
+    <details><summary>Is precision really 100%?</summary><p>For every model that returned valid, parseable output, yes — none kept an ungrounded (hallucinated) span on this corpus. The 70B's score covers only the one document it could be parsed on; its recall (44%) honestly reflects the failure on the other.</p></details>
+    <details><summary>What exactly runs on Butterbase?</summary><p>All of it: inference (AI gateway), data (Postgres + auto-generated Data API), backend logic (a serverless function), and this website (frontend deployment). No other backend.</p></details>
+    <details><summary>Can I verify the custody myself?</summary><p>Yes — press <b>Verify</b> in the section above; your browser recomputes the Merkle root with SHA-256 and rejects a tampered one (try selecting <span class="mono">openai/gpt-oss-20b</span>). Or download the full dataset and re-derive every root offline.</p></details>
+  </div>
+</section>
+
+<section class="wrap" id="sponsors">
+  <div class="eyebrow">Built with · sponsors</div>
+  <h2>How we used each partner — now, and next</h2>
+  <p class="lead">Honest about what's genuinely wired. Butterbase runs the whole stack; on top, we ran the same task on <b>Nebius</b>, re-verified custody in a live <b>Daytona</b> sandbox, ran a pipeline on <b>RocketRide Cloud</b>, and loaded the graph into a live <b>Neo4j AuraDB</b> — every claim below is backed by a real artifact in the <a href="https://github.com/biobitworks/glasswork" target="_blank" rel="noopener">repo</a>.</p>
+  <div class="grid sponsors" style="margin-top:16px">
+    <div class="card sponsor"><div class="role now">Now · the whole stack</div><h3>Butterbase</h3><p>Every layer runs here: the <b>AI gateway</b> ran all 12 open models, <b>Postgres + the Data API</b> hold the catalog, gold set, 24 runs, and 60 custody records, a <b>serverless function</b> serves the dataset, and this site is a <b>Butterbase frontend deploy</b>. Built <b>MCP-first</b>, following the conventions of Butterbase's reference apps <span class="mono">butter-support</span> and <span class="mono">butterbase-crm</span> (schema → Data API → functions → deploy).</p></div>
+    <div class="card sponsor"><div class="role now">Now · method (cited)</div><h3>Fractal Custody Objects</h3><p>The custody layer <b>applies this published method</b> — domain-separated Merkle (leaf 0x00 / node 0x01) — and generates its own fresh demo data. Zenodo deposit, CC-BY / Apache-2.0, cited in the footer.</p></div>
+    <div class="card sponsor"><div class="role now">Now · inference (route-comparable)</div><h3>Nebius Token Factory</h3><p>We ran the <b>same extraction task</b> on Nebius directly. <b>Route-comparable:</b> gemma-3-27b-it scored <b>0.94 recall on both</b> providers, 4 of 5 shared models agree, and the flaky 70B failed on both. Real data in the repo (<span class="mono">partners/nebius_compare.json</span>).</p></div>
+    <div class="card sponsor"><div class="role now">Now · clean-room verify</div><h3>Daytona</h3><p>Custody <b>independently re-derived in a live Daytona sandbox</b> — <b>11/12 roots reproduced</b> byte-for-byte and the tampered receipt <b>rejected</b> (verdict PASS). Attestation + sandbox id in the repo (<span class="mono">partners/daytona_attestation.json</span>).</p></div>
+    <div class="card sponsor"><div class="role now">Now · Cloud pipeline run</div><h3>RocketRide</h3><p>Ran the claim-extraction task as a <b>real RocketRide Cloud pipeline</b> — <span class="mono">webhook→questions→llm_nebius→answers</span> (node <span class="mono">llm_nebius</span> on Nebius Llama-3.3-70B). The Cloud returned the extracted claims (task <span class="mono">tk_83947c…</span>) — a genuine <b>third route</b>. Receipt in the repo (<span class="mono">partners/rocketride_pipeline_receipt.json</span>).</p></div>
+    <div class="card sponsor"><div class="role now">Now · live in AuraDB</div><h3>Neo4j AuraDB</h3><p>The decision + custody graph is <b>loaded into a live AuraDB instance</b> (Instance01): <b>58 nodes, 86 edges</b> — Model, Run, CustodyRoot, Decision, Doc, Citation. The loadable Cypher/JSON is also in the repo (<span class="mono">graph/decision_graph.cypher</span>).</p></div>
+    <div class="card sponsor"><div class="role">Planned · delivery gate</div><h3>Opsera</h3><p><b>Next:</b> bring custody roots into a CI/CD gate — fail the build if a receipt doesn't re-derive, so provenance is enforced before anything ships.</p></div>
+    <div class="card sponsor"><div class="role">Event</div><h3>HackwithBay 3.0</h3><p>Thoughtful agents for productivity. Glasswork is our entry — a productivity agent you can hand off to <em>and</em> audit, end to end.</p></div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div><b style="color:var(--ivory)">Glasswork</b> — automate the work, audit every answer.</div>
+  <div class="cite" id="citation"></div>
+  <div class="src" id="appmeta" style="margin-top:10px"></div>
+</footer>
+
+<div class="flash" id="flash"></div>
+
+<script>
+"use strict";
+const FALLBACK = JSON.parse(document.getElementById('glasswork-data').textContent);
+const API = "__RESULTS_URL__";
+const $ = (s,r=document)=>r.querySelector(s);
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmtUsd = v => "$"+Number(v).toExponential(2);
+const pct = v => (Number(v)*100).toFixed(0)+"%";
+const flash = m => {const f=$('#flash');f.textContent=m;f.classList.add('show');setTimeout(()=>f.classList.remove('show'),2200);};
+let isLive=false;
+
+// ---- crypto: recompute leaves + merkle root in-browser ----
+const enc = new TextEncoder();
+async function sha256hex(bytes){const h=await crypto.subtle.digest('SHA-256',bytes);return [...new Uint8Array(h)].map(b=>b.toString(16).padStart(2,'0')).join('');}
+function hexToBytes(hex){const a=new Uint8Array(hex.length/2);for(let i=0;i<a.length;i++)a[i]=parseInt(hex.substr(i*2,2),16);return a;}
+function cat(...arrs){let n=0;for(const a of arrs)n+=a.length;const o=new Uint8Array(n);let p=0;for(const a of arrs){o.set(a,p);p+=a.length;}return o;}
+async function leafHash(preimage){return sha256hex(cat(new Uint8Array([0x00]),enc.encode(preimage)));}
+async function nodeHash(l,r){return sha256hex(cat(new Uint8Array([0x01]),hexToBytes(l),hexToBytes(r)));}
+async function merkleRoot(leaves){let lvl=leaves.slice();while(lvl.length>1){const nx=[];for(let i=0;i<lvl.length;i+=2){const l=lvl[i],r=i+1<lvl.length?lvl[i+1]:lvl[i];nx.push(await nodeHash(l,r));}lvl=nx;}return lvl[0];}
+
+let DATA=FALLBACK, tier={small:'var(--green)',mid:'var(--gold)',large:'var(--purple)'};
+const byModel = mid => DATA.agg.find(a=>a.model_id===mid);
+const runsFor = mid => DATA.runs.filter(r=>r.model_id===mid).sort((a,b)=>a.item_id<b.item_id?-1:1);
+const rootFor = mid => DATA.custody.roots.find(r=>r.model_id===mid);
+const leavesFor = mid => DATA.custody.leaves.filter(l=>l.model_id===mid).sort((a,b)=>a.seq-b.seq);
+const short = mid => mid.split('/').pop();
+
+function renderAll(){
+  const m=DATA.meta, agg=DATA.agg;
+  $('#srcbadge').textContent = isLive ? 'butterbase-live ✓' : 'embedded snapshot';
+  $('#hm-models').textContent = DATA.models.length;
+  $('#hm-corpus').textContent = m.corpus.gold_claims;
+  const minP = Math.min(...agg.map(a=>Number(a.precision)));
+  $('#hm-precision').textContent = pct(minP);
+  $('#hm-receipts').textContent = DATA.runs.length;
+  $('#pf-p').textContent = Number(m.pass_floor.precision).toFixed(2);
+  $('#pf-r').textContent = Number(m.pass_floor.recall).toFixed(2);
+  $('#bundlelink').href = isLive ? API : '#';
+
+  // steps
+  const steps=[
+    {t:'Give it a task',d:'A document plus what to extract. A small hand-labeled gold set is the answer key.'},
+    {t:'Run the ladder',d:'The same prompt goes to 12 open models (1B→235B) through Butterbase’s gateway, temperature 0.'},
+    {t:'Score & pick',d:'Each run is graded on precision & recall vs the gold set; the agent picks the cheapest model that passes.'},
+    {t:'Prove every call',d:'Each inference emits a custody receipt — two hash leaves → a Merkle root you can recompute in-browser.'},
+  ];
+  const st=$('#steps');st.innerHTML='';
+  steps.forEach((s,i)=>{const c=el('div','card step');c.appendChild(el('div','num',String(i+1)));c.appendChild(el('h3',null,esc(s.t)));c.appendChild(el('p',null,esc(s.d)));st.appendChild(c);});
+
+  // KPIs
+  const passing = agg.filter(a=>a.passes);
+  const chosen = DATA.chosen;
+  const best = [...agg].sort((a,b)=>b.recall-a.recall)[0];
+  const kpis=[
+    {n:pct(minP),cls:'green',l:minP>=1?'precision — no valid-output model kept an ungrounded span':'lowest precision across models'},
+    {n:passing.length+' / '+agg.length,cls:'gold',l:'models cleared the pass bar'},
+    {n:byModel(chosen.model_id).params_b+'B',cls:'purple',l:'params of the pick — not the biggest'},
+    {n:fmtUsd(chosen.usd_total),cls:'green',l:'cost of the pick, whole corpus'},
+  ];
+  const kp=$('#kpis');kp.innerHTML='';
+  kpis.forEach(k=>{const c=el('div','card kpi');c.appendChild(el('div','n '+k.cls,esc(k.n)));c.appendChild(el('div','l',esc(k.l)));kp.appendChild(c);});
+  const big70 = agg.find(a=>a.params_b>=70 && a.parse_fail);
+  $('#thesis-line').innerHTML = `The best recall came from <b>${esc(short(best.model_id))}</b> at ${best.params_b}B (${pct(best.recall)}), while the ${big70?esc(short(big70.model_id))+' at '+big70.params_b+'B':'largest dense model'} scored ${big70?pct(big70.recall):'lower'} — it emitted <b>invalid JSON</b> on one document, unusable by an automated pipeline. So Glasswork picks by measurement, not by size.`;
+
+  // docs
+  const dc=$('#docs');dc.innerHTML='';
+  DATA.items.forEach(it=>{
+    const g=Array.isArray(it.gold_claims)?it.gold_claims.length:0;
+    const c=el('div','card doc');
+    c.appendChild(el('h3',null,esc(it.title)));
+    c.appendChild(el('p',null,'"'+esc(it.doc_text.slice(0,180))+'…"'));
+    c.appendChild(el('div','goldn','▪ '+g+' hand-labeled gold claims'));
+    dc.appendChild(c);
+  });
+
+  // model chips (AI stack)
+  const mc=$('#modelchips');mc.innerHTML='';
+  [...DATA.models].sort((a,b)=>a.params_b-b.params_b).forEach(md=>{
+    mc.appendChild(el('span','chip',`<b>${esc(short(md.model_id))}</b> ${md.params_b}B`));
+  });
+
+  renderChart();
+  renderTable();
+  renderDecision();
+  renderModelSel();
+  renderGraph();
+  renderPricing();
+  renderErrorSelect();
+
+  const ci=DATA.citation;
+  if(ci){$('#citation').innerHTML = `Custody method (published, cited): ${esc(ci.authors)} (${ci.year}). <em>${esc(ci.title)}.</em> ${esc(ci.venue)}. <a href="${esc(ci.url)}" target="_blank" rel="noopener">${esc(ci.doi)}</a> · <span class="mono">paper_cid ${esc(ci.paper_cid.slice(0,16))}…</span>`;}
+  $('#appmeta').textContent = `data ${isLive?'read live from Butterbase':'(embedded snapshot)'} · ${m.corpus.docs} docs / ${m.corpus.gold_claims} gold claims · 12 models × 2 docs = 24 audited runs · app_id app_kjnqcukp84py`;
+}
+
+function renderPricing(){
+  const agg=DATA.agg, chosen=byModel(DATA.chosen.model_id);
+  const total=DATA.runs.reduce((a,r)=>a+Number(r.usd_cost),0);
+  const biggest=[...agg].sort((a,b)=>b.params_b-a.params_b)[0];
+  const llama70=agg.find(a=>/70b/i.test(a.model_id))||[...agg].filter(a=>!a.passes).sort((a,b)=>b.params_b-a.params_b)[0];
+  const dp=(x)=>((x/chosen.usd_total-1)*100).toFixed(0);
+  const cards=[
+    {name:'The pick (measured)',model:short(chosen.model_id),amt:fmtUsd(chosen.usd_total),cls:'gold',hot:true,delta:`${pct(chosen.recall)} recall · passes the bar`},
+    {name:'Default to the largest',model:short(biggest.model_id),amt:fmtUsd(biggest.usd_total),cls:'slate',hot:false,delta:`+${dp(biggest.usd_total)}% for the same pass`},
+    {name:'Default to a "safe" 70B',model:short(llama70.model_id),amt:fmtUsd(llama70.usd_total),cls:'slate',hot:false,delta:`+${dp(llama70.usd_total)}% — and it fails the bar`},
+  ];
+  const pg=$('#pricegrid');pg.innerHTML='';
+  cards.forEach(c=>{const d=el('div','card pricecard'+(c.hot?' hot':''));
+    d.innerHTML=`<div class="name">${esc(c.name)}</div><div class="amt ${c.cls}">${esc(c.amt)}</div><div class="mono" style="font-size:.72rem;color:var(--faint)">${esc(c.model)}</div><div class="delta" style="margin-top:8px">${c.delta}</div>`;
+    pg.appendChild(d);});
+  $('#pricenote').innerHTML = `Costs are per corpus (2 documents), read from Butterbase's per-call usage. The entire 12-model, 24-run audit that produced this page cost <b>${fmtUsd(total)}</b> total. Picking the cheapest passing model instead of defaulting to the largest is a real, recurring saving — and it also dodges the 70B's silent JSON failure.`;
+}
+
+// ---- chart ----
+function renderChart(){
+  const W=760,H=420,mL=64,mR=30,mT=24,mB=56,FLOOR=1e-8;
+  const agg=DATA.agg;
+  const costs=agg.map(a=>Math.max(Number(a.usd_total),FLOOR));
+  const xmin=Math.log10(Math.min(...costs))-0.12, xmax=Math.log10(Math.max(...costs))+0.12;
+  const ymin=0.35, ymax=1.02;
+  const X=v=>mL+(Math.log10(Math.max(Number(v),FLOOR))-xmin)/(xmax-xmin)*(W-mL-mR);
+  const Y=v=>mT+(1-(Number(v)-ymin)/(ymax-ymin))*(H-mT-mB);
+  const chosen=DATA.chosen.model_id;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Recall versus cost per model">`;
+  [0.4,0.5,0.6,0.7,0.75,0.8,0.9,1.0].forEach(g=>{const y=Y(g);const bar=(g===0.75);
+    s+=`<line class="gridline" x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}" ${bar?'stroke="var(--green)" stroke-dasharray="4 4" stroke-opacity="0.55"':''}/>`;
+    s+=`<text class="ticklabel" x="${mL-8}" y="${y+3}" text-anchor="end">${g.toFixed(2)}</text>`;});
+  s+=`<text class="ptlabel" x="${W-mR}" y="${Y(0.75)-6}" text-anchor="end" fill="var(--green)">pass bar · recall ≥ 0.75</text>`;
+  [1e-5,3e-5,1e-4,3e-4,1e-3].forEach(t=>{if(Math.log10(t)<xmin||Math.log10(t)>xmax)return;const x=X(t);
+    s+=`<line class="gridline" x1="${x}" y1="${mT}" x2="${x}" y2="${H-mB}" stroke-opacity="0.5"/>`;
+    s+=`<text class="ticklabel" x="${x}" y="${H-mB+18}" text-anchor="middle">${'$'+t.toExponential(0)}</text>`;});
+  s+=`<text class="axislabel" x="${mL+(W-mL-mR)/2}" y="${H-8}" text-anchor="middle">cost for the whole corpus (log) →</text>`;
+  s+=`<text class="axislabel" transform="translate(16 ${mT+(H-mT-mB)/2}) rotate(-90)" text-anchor="middle">recall (↑ better)</text>`;
+  const pts=[];
+  agg.forEach(a=>{const x=X(a.usd_total),y=Y(a.recall);
+    const color=a.parse_fail?'var(--copper)':a.passes?'var(--green)':'var(--slate)';
+    const r=8+Math.min(9,Math.log10(a.params_b+1)*4);pts.push({a,x,y,color,r});});
+  pts.sort((p,q)=>q.r-p.r).forEach(p=>{const isChosen=p.a.model_id===chosen;
+    s+=`<circle cx="${p.x}" cy="${p.y}" r="${p.r}" fill="${p.color}" fill-opacity="${p.a.passes?0.85:0.5}" stroke="${p.color}" stroke-width="1.5" data-mid="${esc(p.a.model_id)}" class="pt"/>`;
+    if(isChosen) s+=`<circle cx="${p.x}" cy="${p.y}" r="${p.r+5}" fill="none" stroke="var(--gold)" stroke-width="2.5"/>`;});
+  const labelSet=new Set([chosen]);
+  const outlier=agg.find(a=>a.parse_fail); if(outlier)labelSet.add(outlier.model_id);
+  labelSet.add([...agg].sort((a,b)=>a.params_b-b.params_b)[0].model_id);
+  labelSet.add([...agg].sort((a,b)=>b.params_b-a.params_b)[0].model_id);
+  pts.forEach(p=>{if(!labelSet.has(p.a.model_id))return;
+    const dy=p.a.recall>0.85?-p.r-8:p.r+16; const anchor=p.x>W-160?'end':'start';const dx=anchor==='end'?-p.r-4:p.r+4;
+    s+=`<text class="ptlabel" x="${p.x+dx}" y="${p.y+dy}" text-anchor="${anchor}">${esc(short(p.a.model_id))}${p.a.model_id===chosen?' ◆':''}</text>`;});
+  s+=`</svg>`;
+  $('#chart').innerHTML=s;
+  const tt=$('#tt');const wrap=$('.chartwrap');
+  $('#chart').querySelectorAll('.pt').forEach(c=>{c.style.cursor='pointer';
+    c.addEventListener('mousemove',ev=>{const a=byModel(c.dataset.mid);const rect=wrap.getBoundingClientRect();
+      tt.innerHTML=`<b>${esc(short(a.model_id))}</b> · ${a.params_b}B<div class="row"><span>precision</span><span>${pct(a.precision)}</span></div><div class="row"><span>recall</span><span>${pct(a.recall)}</span></div><div class="row"><span>cost</span><span>${fmtUsd(a.usd_total)}</span></div><div class="row"><span>verdict</span><span>${a.parse_fail?'invalid JSON':a.passes?'passes':'below bar'}</span></div>`;
+      tt.style.left=Math.min(rect.width-190,ev.clientX-rect.left+12)+'px';tt.style.top=(ev.clientY-rect.top+12)+'px';tt.style.opacity=1;});
+    c.addEventListener('mouseleave',()=>tt.style.opacity=0);
+    c.addEventListener('click',()=>{selectModel(c.dataset.mid);document.getElementById('custody').scrollIntoView({behavior:'smooth'});});});
+}
+
+function renderTable(){
+  const tb=$('#matrixtbl tbody');tb.innerHTML='';const chosen=DATA.chosen.model_id;
+  [...DATA.agg].sort((a,b)=>a.params_b-b.params_b).forEach(a=>{
+    const tr=el('tr');if(a.model_id===chosen)tr.classList.add('chosen');tr.dataset.mid=a.model_id;
+    const verdict=a.parse_fail?'<span class="pill warn">invalid JSON</span>':a.passes?'<span class="pill pass">✓ passes</span>':'<span class="pill fail">below bar</span>';
+    tr.innerHTML=`<td><span class="modeltag"><span class="tierdot" style="background:${tier[a.tier]}"></span>${esc(short(a.model_id))}${a.model_id===chosen?' <span style="color:var(--gold)">◆</span>':''}</span></td>
+      <td class="num">${a.params_b}B</td><td class="num">${pct(a.precision)}</td>
+      <td class="num"><span class="bar"><i style="width:${Math.round(a.recall*100)}%;background:${a.parse_fail?'var(--copper)':a.passes?'var(--green)':'var(--slate)'}"></i></span> ${pct(a.recall)}</td>
+      <td class="num">${Number(a.f1).toFixed(2)}</td><td class="num">${fmtUsd(a.usd_total)}</td><td>${verdict}</td>`;
+    tr.addEventListener('click',()=>{selectModel(a.model_id);document.getElementById('custody').scrollIntoView({behavior:'smooth'});});
+    tb.appendChild(tr);});
+}
+function renderDecision(){
+  const c=DATA.chosen, a=byModel(c.model_id);
+  const passing=DATA.agg.filter(x=>x.passes).sort((x,y)=>x.usd_total-y.usd_total);
+  $('#decisioncard').innerHTML =
+    `<div><div class="pill pass">the pick</div><div class="big" style="margin-top:8px">Trusted model = <span class="m">${esc(short(c.model_id))}</span></div></div>
+     <div class="why">Of ${DATA.agg.length} models, ${passing.length} cleared the bar. Among those, this one is the <b>cheapest</b> — ${a.params_b}B params, ${pct(a.recall)} recall, ${pct(a.precision)} precision, ${fmtUsd(c.usd_total)} for the corpus. Larger, pricier models either cost more for the same pass or failed the bar outright.</div>`;
+}
+function renderModelSel(){
+  const sel=$('#modelsel');sel.innerHTML='';
+  [...DATA.agg].sort((a,b)=>a.params_b-b.params_b).forEach(a=>{const r=rootFor(a.model_id);const o=el('option');o.value=a.model_id;
+    o.textContent=short(a.model_id)+(r&&r.tampered?'  ⚠ tampered':'')+(a.model_id===DATA.chosen.model_id?'  ◆ pick':'');sel.appendChild(o);});
+  sel.onchange=()=>selectModel(sel.value);selectModel(DATA.chosen.model_id);
+}
+function selectModel(mid){
+  $('#modelsel').value=mid;
+  $('#matrixtbl tbody').querySelectorAll('tr').forEach(tr=>tr.classList.toggle('sel',tr.dataset.mid===mid));
+  renderReceipt(mid);resetVerify(mid);
+}
+function renderReceipt(mid){
+  const runs=runsFor(mid), root=rootFor(mid);
+  let h=`<div class="kv">model root <b class="hash">${esc(root.root_sha256)}</b> · ${root.leaf_count} leaves${root.tampered?' · <span style="color:var(--copper)">stored root was tampered for this demo</span>':''}</div>`;
+  runs.forEach(r=>{const bad=r.parse_status && r.parse_status!=='ok';
+    h+=`<div class="leaf"><div class="lh"><span class="lt">run · ${esc(r.item_id.replace('doc-',''))}</span>${bad?'<span class="pill warn">invalid JSON</span>':'<span class="pill pass">'+pct(r.recall)+' recall</span>'}</div>`;
+    h+=`<div class="kv"><span class="lt" style="color:var(--faint)">operational leaf</span><br>preimage <b>${esc(r.op_preimage)}</b><br>sha256(0x00‖·) = <b class="hash">${esc(r.op_leaf)}</b></div>`;
+    h+=`<div class="kv" style="margin-top:8px"><span class="lt" style="color:var(--faint)">content leaf</span><br>preimage <b>${esc(r.content_preimage.slice(0,34))}…‖…${esc(r.content_preimage.slice(-8))}</b><br>sha256(0x00‖·) = <b class="hash">${esc(r.content_leaf)}</b></div></div>`;});
+  $('#receiptbody').innerHTML=h;
+}
+function resetVerify(mid){
+  const vs=$('#vstatus');vs.className='vstatus idle';$('#vic').textContent='•';$('#vtitle').textContent='Not verified yet';
+  const t=rootFor(mid).tampered;
+  $('#vsub').textContent = t ? 'This model’s stored root was tampered — Verify should reject it.' : 'Press Verify to recompute the Merkle root in your browser.';
+  $('#vsteps').innerHTML='';
+}
+async function verify(){
+  const mid=$('#modelsel').value;const btn=$('#verifybtn');btn.disabled=true;btn.textContent='Recomputing…';
+  const leaves=leavesFor(mid), root=rootFor(mid);const steps=[];let allLeafOk=true;const recomputed=[];
+  for(const lf of leaves){const run=DATA.runs.find(r=>r.id===lf.run_id);const pre=lf.leaf_type==='operational'?run.op_preimage:run.content_preimage;
+    const h=await leafHash(pre);recomputed.push(h);const ok=h===lf.sha256; if(!ok)allLeafOk=false;steps.push({t:`leaf ${lf.seq} · ${lf.leaf_type}`,ok});}
+  const reRoot=await merkleRoot(recomputed);const rootOk = reRoot===root.root_sha256;const pass = allLeafOk && rootOk;
+  $('#vsteps').innerHTML = steps.map(s=>`<div><span>${esc(s.t)}</span><span class="${s.ok?'m':'x'}">${s.ok?'match ✓':'MISMATCH ✗'}</span></div>`).join('')
+    + `<div><span>recomputed root</span><span class="${rootOk?'m':'x'}">${rootOk?'matches ✓':'MISMATCH ✗'}</span></div>`
+    + `<div style="border-top:1px solid var(--line)"><span>stored&nbsp;&nbsp;<span class="hash mono">${esc(root.root_sha256.slice(0,20))}…</span></span></div>`
+    + `<div><span>recomputed&nbsp;<span class="mono" style="color:${rootOk?'var(--green)':'var(--red)'}">${esc(reRoot.slice(0,20))}…</span></span></div>`;
+  const vs=$('#vstatus');
+  if(pass){vs.className='vstatus ok';$('#vic').textContent='✓';$('#vtitle').textContent='Custody verified';$('#vsub').textContent='Recomputed root matches the stored root. Provenance of the recorded run is intact.';flash('✓ Custody root verified in-browser');}
+  else{vs.className='vstatus bad';$('#vic').textContent='✗';$('#vtitle').textContent='Custody REJECTED';$('#vsub').textContent=rootOk?'A leaf failed to reproduce from its named bytes.':'Recomputed root does not match the stored root — this receipt was tampered with. Reject.';flash('✗ Tamper detected — receipt rejected');}
+  btn.disabled=false;btn.textContent='Verify custody root';
+}
+function renderGraph(){
+  const order={commitment:0,decision:1,learning:2,verdict:3};const g=$('#graph');g.innerHTML='';
+  [...DATA.decisions].sort((a,b)=>(order[a.kind]??9)-(order[b.kind]??9)).forEach(d=>{
+    const n=el('div','node '+esc(d.kind));n.appendChild(el('div','k',esc(d.kind)));n.appendChild(el('div','lbl',esc(d.label)));g.appendChild(n);});
+}
+
+// ---- error surface: measure each model against the gold standard, claim by claim ----
+const normTxt = s => (s||'').toLowerCase().replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim();
+function errorSurface(mid){
+  return DATA.items.map(it=>{
+    const run=DATA.runs.find(r=>r.model_id===mid && r.item_id===it.id);
+    const gold=Array.isArray(it.gold_claims)?it.gold_claims:[];
+    const preds=(run && Array.isArray(run.output))?run.output:[];
+    const docN=normTxt(it.doc_text);
+    const P=preds.map(p=>{const span=p.supporting_span||p.span||'';const grounded=(p.grounded!==undefined)?p.grounded:(normTxt(span).length>=8 && docN.includes(normTxt(span)));
+      return {claim:p.claim||'',span,hay:normTxt((p.claim||'')+' '+span),grounded};});
+    const used=new Array(P.length).fill(false);
+    const goldStatus=gold.map(g=>{let hit=false;
+      for(let i=0;i<P.length;i++){if(used[i]||!P[i].grounded)continue;if((g.kw||[]).every(k=>P[i].hay.includes(k))){used[i]=true;hit=true;break;}}
+      return {text:g.text,hit};});
+    const ungrounded=P.filter(p=>!p.grounded);
+    return {item:it,gold:goldStatus,ungrounded,parse_status:run?run.parse_status:'missing',recovered:goldStatus.filter(x=>x.hit).length};
+  });
+}
+function renderErrorSelect(){
+  const sel=$('#errsel');sel.innerHTML='';
+  [...DATA.agg].sort((a,b)=>a.params_b-b.params_b).forEach(a=>{const o=el('option');o.value=a.model_id;
+    o.textContent=short(a.model_id)+' · '+pct(a.recall)+' recall';sel.appendChild(o);});
+  // default to a model with a visible error surface (misses), else the pick
+  const withMiss=[...DATA.agg].filter(a=>a.recall<0.95).sort((a,b)=>a.recall-b.recall||a.params_b-b.params_b);
+  const def=(withMiss[0]||DATA.agg.find(a=>a.model_id===DATA.chosen.model_id)||DATA.agg[0]).model_id;
+  sel.value=def;sel.onchange=()=>renderErrors(sel.value);renderErrors(def);
+}
+function renderErrors(mid){
+  const surf=errorSurface(mid);
+  const totG=surf.reduce((a,d)=>a+d.gold.length,0), totR=surf.reduce((a,d)=>a+d.recovered,0);
+  const totF=surf.reduce((a,d)=>a+d.ungrounded.length,0);
+  $('#errsummary').textContent = `recovered ${totR}/${totG} gold claims · ${totF} ungrounded span${totF===1?'':'s'} flagged`;
+  const grid=$('#errgrid');grid.innerHTML='';
+  surf.forEach(d=>{
+    const c=el('div','card errdoc');
+    const invalid=d.parse_status && d.parse_status!=='ok';
+    c.innerHTML=`<div class="eh"><h3>${esc(d.item.title)}</h3>${invalid?'<span class="pill warn">invalid JSON</span>':'<span class="pill '+(d.recovered===d.gold.length?'pass':'fail')+'">'+d.recovered+'/'+d.gold.length+' recovered</span>'}</div>`;
+    d.gold.forEach(g=>{const row=el('div','claimrow '+(g.hit?'hit':'miss'));
+      row.innerHTML=`<span class="mk">${g.hit?'✓':'✗'}</span><span class="ct">${esc(g.text)}</span>`;c.appendChild(row);});
+    if(invalid){c.appendChild(el('div','flagbox','⚠ The model returned text that is not valid JSON — the automated pipeline could recover nothing. The source of error here is the format, not the facts.'));}
+    else if(d.ungrounded.length){c.appendChild(el('div','flagbox','⚠ '+d.ungrounded.length+' predicted claim(s) had a supporting span not found in the source — flagged as ungrounded (a would-be hallucination), excluded from the score.'));}
+    else{c.appendChild(el('div','flagbox clean','✓ Every predicted claim was grounded in the source — no hallucinated spans. Misses above are facts the model did not extract.'));}
+    grid.appendChild(c);
+  });
+}
+
+renderAll();
+$('#runbtn').addEventListener('click',()=>{document.getElementById('chart') && document.querySelector('#try .card').scrollIntoView({behavior:'smooth'});flash(isLive?'Comparison loaded live from Butterbase':'Comparison loaded (embedded snapshot)');});
+$('#verifybtn').addEventListener('click',verify);
+(async()=>{
+  try{const r=await fetch(API,{cache:'no-store'});
+    if(r.ok){const live=await r.json(); if(live&&live.agg&&live.agg.length){DATA=live;isLive=true;renderAll();}}
+  }catch(e){/* keep embedded fallback, isLive stays false */}
+})();
+</script>
+</body>
+</html>
