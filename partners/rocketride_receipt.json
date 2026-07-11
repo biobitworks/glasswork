@@ -1,0 +1,25 @@
+{
+  "provider": "rocketride",
+  "connected": true,
+  "uri": "wss://api.rocketride.ai/task/service",
+  "user": "Byron Lee",
+  "credits": {
+    "balances": {},
+    "granted": {},
+    "consumed": {},
+    "labels": {}
+  },
+  "node_count": 128,
+  "sample_nodes": [
+    "accessibility_describe",
+    "agent_crewai",
+    "agent_crewai_manager",
+    "agent_crewai_subagent",
+    "agent_deepagent",
+    "agent_deepagent_subagent",
+    "agent_langchain",
+    "agent_llamaindex"
+  ],
+  "server_version": 1,
+  "verified_at": "2026-07-11T00:50:11.735Z"
+}

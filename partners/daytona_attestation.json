@@ -1,0 +1,14 @@
+{
+  "provider": "daytona",
+  "sandbox_id": "c35104fe-c2e1-45cb-bac1-4abb13ff1e44",
+  "api_url": "https://app.daytona.io/api",
+  "verified_at": "2026-07-11T00:46:55.749Z",
+  "attest": {
+    "reproduced_roots": 11,
+    "total_roots": 12,
+    "tamper_caught": true,
+    "verdict": "PASS",
+    "python": "3.14.4"
+  },
+  "raw": "DAYTONA_ATTEST {\"reproduced_roots\": 11, \"total_roots\": 12, \"tamper_caught\": true, \"verdict\": \"PASS\", \"python\": \"3.14.4\"}\n"
+}

@@ -1,0 +1,35 @@
+{
+  "nebius": {
+    "status": "now",
+    "label": "Ran the same extraction task on Nebius Token Factory",
+    "models_compared": 5,
+    "agree": 4,
+    "example": {
+      "model": "gemma-3-27b-it",
+      "butterbase_recall": 0.9375,
+      "nebius_recall": 0.9375
+    }
+  },
+  "daytona": {
+    "status": "now",
+    "label": "Custody re-verified in an isolated Daytona sandbox",
+    "verdict": "PASS",
+    "reproduced": 11,
+    "total": 12,
+    "tamper_caught": true,
+    "sandbox_id": "c35104fe-c2e1-45cb-bac1-4abb13ff1e44"
+  },
+  "neo4j": {
+    "status": "export",
+    "label": "Decision + custody graph exported (loadable Cypher / JSON)",
+    "nodes": 58,
+    "edges": 86
+  },
+  "rocketride": {
+    "status": "connected",
+    "label": "Connected to RocketRide Cloud (authenticated, node catalog enumerated)",
+    "node_count": 128,
+    "user": "Byron Lee",
+    "uri": "wss://api.rocketride.ai/task/service"
+  }
+}

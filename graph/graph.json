@@ -1,0 +1,1085 @@
+{
+  "nodes": [
+    {
+      "id": "meta-llama/llama-3.2-1b-instruct",
+      "label": "Model",
+      "props": {
+        "params_b": "1",
+        "tier": "small",
+        "family": "llama",
+        "precision": 1,
+        "recall": 0.5,
+        "passes": false,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "meta-llama/llama-3.2-3b-instruct",
+      "label": "Model",
+      "props": {
+        "params_b": "3",
+        "tier": "small",
+        "family": "llama",
+        "precision": 1,
+        "recall": 0.6875,
+        "passes": false,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "meta-llama/llama-3.1-8b-instruct",
+      "label": "Model",
+      "props": {
+        "params_b": "8",
+        "tier": "small",
+        "family": "llama",
+        "precision": 1,
+        "recall": 0.6875,
+        "passes": false,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "qwen/qwen3-8b",
+      "label": "Model",
+      "props": {
+        "params_b": "8",
+        "tier": "small",
+        "family": "qwen",
+        "precision": 1,
+        "recall": 0.6875,
+        "passes": false,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "qwen/qwen3-14b",
+      "label": "Model",
+      "props": {
+        "params_b": "14",
+        "tier": "mid",
+        "family": "qwen",
+        "precision": 1,
+        "recall": 0.6875,
+        "passes": false,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "microsoft/phi-4",
+      "label": "Model",
+      "props": {
+        "params_b": "14",
+        "tier": "mid",
+        "family": "phi",
+        "precision": 1,
+        "recall": 0.6875,
+        "passes": false,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "openai/gpt-oss-20b",
+      "label": "Model",
+      "props": {
+        "params_b": "20",
+        "tier": "mid",
+        "family": "gpt-oss",
+        "precision": 1,
+        "recall": 0.6875,
+        "passes": false,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "google/gemma-3-27b-it",
+      "label": "Model",
+      "props": {
+        "params_b": "27",
+        "tier": "mid",
+        "family": "gemma",
+        "precision": 1,
+        "recall": 0.9375,
+        "passes": true,
+        "is_pick": true
+      }
+    },
+    {
+      "id": "qwen/qwen3-32b",
+      "label": "Model",
+      "props": {
+        "params_b": "32",
+        "tier": "mid",
+        "family": "qwen",
+        "precision": 1,
+        "recall": 0.75,
+        "passes": true,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "meta-llama/llama-3.3-70b-instruct",
+      "label": "Model",
+      "props": {
+        "params_b": "70",
+        "tier": "large",
+        "family": "llama",
+        "precision": 1,
+        "recall": 0.4375,
+        "passes": false,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "label": "Model",
+      "props": {
+        "params_b": "120",
+        "tier": "large",
+        "family": "gpt-oss",
+        "precision": 1,
+        "recall": 0.6875,
+        "passes": false,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "qwen/qwen3-235b-a22b-2507",
+      "label": "Model",
+      "props": {
+        "params_b": "235",
+        "tier": "large",
+        "family": "qwen",
+        "precision": 1,
+        "recall": 0.875,
+        "passes": true,
+        "is_pick": false
+      }
+    },
+    {
+      "id": "doc-photosynthesis",
+      "label": "Doc",
+      "props": {
+        "title": "Photosynthesis (biology primer)",
+        "gold": 8
+      }
+    },
+    {
+      "id": "doc-water-cycle",
+      "label": "Doc",
+      "props": {
+        "title": "The water cycle (earth science primer)",
+        "gold": 8
+      }
+    },
+    {
+      "id": "meta_llama_llama_3_3_70b_instruct__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "meta-llama/llama-3.3-70b-instruct",
+        "item_id": "doc-water-cycle",
+        "precision": "0",
+        "recall": "0",
+        "passes": false,
+        "parse_status": "invalid_json"
+      }
+    },
+    {
+      "id": "meta_llama_llama_3_2_1b_instruct__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "meta-llama/llama-3.2-1b-instruct",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.625",
+        "passes": false,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "qwen_qwen3_8b__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "qwen/qwen3-8b",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.625",
+        "passes": false,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "meta_llama_llama_3_2_1b_instruct__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "meta-llama/llama-3.2-1b-instruct",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.375",
+        "passes": false,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "qwen_qwen3_8b__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "qwen/qwen3-8b",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.75",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "meta_llama_llama_3_1_8b_instruct__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "meta-llama/llama-3.1-8b-instruct",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.75",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "meta_llama_llama_3_1_8b_instruct__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "meta-llama/llama-3.1-8b-instruct",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.625",
+        "passes": false,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "meta_llama_llama_3_2_3b_instruct__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "meta-llama/llama-3.2-3b-instruct",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.625",
+        "passes": false,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "openai_gpt_oss_20b__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "openai/gpt-oss-20b",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.625",
+        "passes": false,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "meta_llama_llama_3_2_3b_instruct__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "meta-llama/llama-3.2-3b-instruct",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.75",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "openai_gpt_oss_20b__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "openai/gpt-oss-20b",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.75",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "microsoft_phi_4__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "microsoft/phi-4",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.75",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "openai_gpt_oss_120b__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "openai/gpt-oss-120b",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.625",
+        "passes": false,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "qwen_qwen3_14b__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "qwen/qwen3-14b",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.625",
+        "passes": false,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "google_gemma_3_27b_it__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "google/gemma-3-27b-it",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "1",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "qwen_qwen3_14b__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "qwen/qwen3-14b",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.75",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "google_gemma_3_27b_it__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "google/gemma-3-27b-it",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.875",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "microsoft_phi_4__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "microsoft/phi-4",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.625",
+        "passes": false,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "qwen_qwen3_32b__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "qwen/qwen3-32b",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.75",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "qwen_qwen3_32b__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "qwen/qwen3-32b",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.75",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "meta_llama_llama_3_3_70b_instruct__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "meta-llama/llama-3.3-70b-instruct",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.875",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "qwen_qwen3_235b_a22b_2507__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "qwen/qwen3-235b-a22b-2507",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.875",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "openai_gpt_oss_120b__doc-water-cycle",
+      "label": "Run",
+      "props": {
+        "model_id": "openai/gpt-oss-120b",
+        "item_id": "doc-water-cycle",
+        "precision": "1",
+        "recall": "0.75",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "qwen_qwen3_235b_a22b_2507__doc-photosynthesis",
+      "label": "Run",
+      "props": {
+        "model_id": "qwen/qwen3-235b-a22b-2507",
+        "item_id": "doc-photosynthesis",
+        "precision": "1",
+        "recall": "0.875",
+        "passes": true,
+        "parse_status": "ok"
+      }
+    },
+    {
+      "id": "root:meta-llama/llama-3.2-1b-instruct",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "meta-llama/llama-3.2-1b-instruct",
+        "root_sha256": "c950ef0f553019b3df6872170eade03bbea92c4d61553ef9fe4ed5acf3803b90",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:meta-llama/llama-3.2-3b-instruct",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "meta-llama/llama-3.2-3b-instruct",
+        "root_sha256": "68a0758543333c09fa8e4919e1739f02c74bd94c1b4d7b046e801550ec82f4ee",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:meta-llama/llama-3.1-8b-instruct",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "meta-llama/llama-3.1-8b-instruct",
+        "root_sha256": "a8cfd4310058715c51ad389738e4a162f940985b4268b57bdfb21c41942c05e0",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:qwen/qwen3-8b",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "qwen/qwen3-8b",
+        "root_sha256": "9f3f72e1d2346aeae0b5fb02b302cb05b83c26510b32d42dc632c29debd2979e",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:openai/gpt-oss-20b",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "openai/gpt-oss-20b",
+        "root_sha256": "4d7587813c05f55b08f01a8993b702469091150c95a808889d4d02a5912b1b50",
+        "tampered": true,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:microsoft/phi-4",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "microsoft/phi-4",
+        "root_sha256": "0e9b3c2be5108f450c25eb3f1bdb4c75dc25e1063f9d6cdbbe98b12a1ba3cac9",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:qwen/qwen3-14b",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "qwen/qwen3-14b",
+        "root_sha256": "81d1fa9399fdbe7121210dc748dc888370e38180156667414ae7ed3c9ecfe231",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:google/gemma-3-27b-it",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "google/gemma-3-27b-it",
+        "root_sha256": "f4feaf176782b9aa2732d76b3c0f673c6ff68b524e25e59b7952491194e63136",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:qwen/qwen3-32b",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "qwen/qwen3-32b",
+        "root_sha256": "f0d3f86a416d45ccfab693e9d83acd36d764d076f4f41ceaeab208be00f886a3",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:meta-llama/llama-3.3-70b-instruct",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "meta-llama/llama-3.3-70b-instruct",
+        "root_sha256": "debd569e061140bd8f57dbaac108da8ea445cde302054601e29b0f05c3abf5eb",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:openai/gpt-oss-120b",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "openai/gpt-oss-120b",
+        "root_sha256": "3e8a224c1b6c5cc39bba71fe432e5dd1638ca48c2cf24b949e96474696b539ed",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "root:qwen/qwen3-235b-a22b-2507",
+      "label": "CustodyRoot",
+      "props": {
+        "model_id": "qwen/qwen3-235b-a22b-2507",
+        "root_sha256": "118c2d92380ac0f8a759f73babdb792950e05508763da545e6396f7db46d7c93",
+        "tampered": false,
+        "leaf_count": 4
+      }
+    },
+    {
+      "id": "ceiling",
+      "label": "Decision",
+      "props": {
+        "kind": "verdict",
+        "label": "Custody proves provenance of the recorded run — not correctness, not reproducibility. An LLM verdict is a signal, never a custody proof."
+      }
+    },
+    {
+      "id": "commit-floor",
+      "label": "Decision",
+      "props": {
+        "kind": "commitment",
+        "label": "Pass bar fixed BEFORE running: precision ≥ 0.80 AND recall ≥ 0.75"
+      }
+    },
+    {
+      "id": "dec-chosen",
+      "label": "Decision",
+      "props": {
+        "kind": "decision",
+        "label": "Selected google/gemma-3-27b-it — cheapest passing model on this corpus"
+      }
+    },
+    {
+      "id": "dec-rule",
+      "label": "Decision",
+      "props": {
+        "kind": "decision",
+        "label": "Trusted model = the cheapest model that clears the pass bar"
+      }
+    },
+    {
+      "id": "learn-json",
+      "label": "Decision",
+      "props": {
+        "kind": "learning",
+        "label": "The 70B Llama emitted invalid JSON on 1 of 2 docs — unusable by an automated pipeline"
+      }
+    },
+    {
+      "id": "learn-precision",
+      "label": "Decision",
+      "props": {
+        "kind": "learning",
+        "label": "Every model that returned valid output scored 100% precision — no ungrounded spans survived"
+      }
+    },
+    {
+      "id": "learn-size",
+      "label": "Decision",
+      "props": {
+        "kind": "learning",
+        "label": "Model size did NOT predict recall: 27B Gemma (0.9375) beat the 70B and 120B models"
+      }
+    },
+    {
+      "id": "10.5281/zenodo.21210575",
+      "label": "Citation",
+      "props": {
+        "title": "Fractal Custody Objects: route-comparable chain-of-custody for deterministic computational biology and AI-agent provenance",
+        "doi": "10.5281/zenodo.21210575"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "meta_llama_llama_3_3_70b_instruct__doc-water-cycle",
+      "to": "meta-llama/llama-3.3-70b-instruct",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "meta_llama_llama_3_3_70b_instruct__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "meta_llama_llama_3_2_1b_instruct__doc-photosynthesis",
+      "to": "meta-llama/llama-3.2-1b-instruct",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "meta_llama_llama_3_2_1b_instruct__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "qwen_qwen3_8b__doc-photosynthesis",
+      "to": "qwen/qwen3-8b",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "qwen_qwen3_8b__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "meta_llama_llama_3_2_1b_instruct__doc-water-cycle",
+      "to": "meta-llama/llama-3.2-1b-instruct",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "meta_llama_llama_3_2_1b_instruct__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "qwen_qwen3_8b__doc-water-cycle",
+      "to": "qwen/qwen3-8b",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "qwen_qwen3_8b__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "meta_llama_llama_3_1_8b_instruct__doc-water-cycle",
+      "to": "meta-llama/llama-3.1-8b-instruct",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "meta_llama_llama_3_1_8b_instruct__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "meta_llama_llama_3_1_8b_instruct__doc-photosynthesis",
+      "to": "meta-llama/llama-3.1-8b-instruct",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "meta_llama_llama_3_1_8b_instruct__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "meta_llama_llama_3_2_3b_instruct__doc-photosynthesis",
+      "to": "meta-llama/llama-3.2-3b-instruct",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "meta_llama_llama_3_2_3b_instruct__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "openai_gpt_oss_20b__doc-photosynthesis",
+      "to": "openai/gpt-oss-20b",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "openai_gpt_oss_20b__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "meta_llama_llama_3_2_3b_instruct__doc-water-cycle",
+      "to": "meta-llama/llama-3.2-3b-instruct",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "meta_llama_llama_3_2_3b_instruct__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "openai_gpt_oss_20b__doc-water-cycle",
+      "to": "openai/gpt-oss-20b",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "openai_gpt_oss_20b__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "microsoft_phi_4__doc-water-cycle",
+      "to": "microsoft/phi-4",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "microsoft_phi_4__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "openai_gpt_oss_120b__doc-photosynthesis",
+      "to": "openai/gpt-oss-120b",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "openai_gpt_oss_120b__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "qwen_qwen3_14b__doc-photosynthesis",
+      "to": "qwen/qwen3-14b",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "qwen_qwen3_14b__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "google_gemma_3_27b_it__doc-photosynthesis",
+      "to": "google/gemma-3-27b-it",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "google_gemma_3_27b_it__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "qwen_qwen3_14b__doc-water-cycle",
+      "to": "qwen/qwen3-14b",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "qwen_qwen3_14b__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "google_gemma_3_27b_it__doc-water-cycle",
+      "to": "google/gemma-3-27b-it",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "google_gemma_3_27b_it__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "microsoft_phi_4__doc-photosynthesis",
+      "to": "microsoft/phi-4",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "microsoft_phi_4__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "qwen_qwen3_32b__doc-water-cycle",
+      "to": "qwen/qwen3-32b",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "qwen_qwen3_32b__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "qwen_qwen3_32b__doc-photosynthesis",
+      "to": "qwen/qwen3-32b",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "qwen_qwen3_32b__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "meta_llama_llama_3_3_70b_instruct__doc-photosynthesis",
+      "to": "meta-llama/llama-3.3-70b-instruct",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "meta_llama_llama_3_3_70b_instruct__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "qwen_qwen3_235b_a22b_2507__doc-water-cycle",
+      "to": "qwen/qwen3-235b-a22b-2507",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "qwen_qwen3_235b_a22b_2507__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "openai_gpt_oss_120b__doc-water-cycle",
+      "to": "openai/gpt-oss-120b",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "openai_gpt_oss_120b__doc-water-cycle",
+      "to": "doc-water-cycle",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "qwen_qwen3_235b_a22b_2507__doc-photosynthesis",
+      "to": "qwen/qwen3-235b-a22b-2507",
+      "type": "OF_MODEL"
+    },
+    {
+      "from": "qwen_qwen3_235b_a22b_2507__doc-photosynthesis",
+      "to": "doc-photosynthesis",
+      "type": "ON_DOC"
+    },
+    {
+      "from": "meta-llama/llama-3.2-1b-instruct",
+      "to": "root:meta-llama/llama-3.2-1b-instruct",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "meta-llama/llama-3.2-3b-instruct",
+      "to": "root:meta-llama/llama-3.2-3b-instruct",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "meta-llama/llama-3.1-8b-instruct",
+      "to": "root:meta-llama/llama-3.1-8b-instruct",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "qwen/qwen3-8b",
+      "to": "root:qwen/qwen3-8b",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "openai/gpt-oss-20b",
+      "to": "root:openai/gpt-oss-20b",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "microsoft/phi-4",
+      "to": "root:microsoft/phi-4",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "qwen/qwen3-14b",
+      "to": "root:qwen/qwen3-14b",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "google/gemma-3-27b-it",
+      "to": "root:google/gemma-3-27b-it",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "qwen/qwen3-32b",
+      "to": "root:qwen/qwen3-32b",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "meta-llama/llama-3.3-70b-instruct",
+      "to": "root:meta-llama/llama-3.3-70b-instruct",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "openai/gpt-oss-120b",
+      "to": "root:openai/gpt-oss-120b",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "qwen/qwen3-235b-a22b-2507",
+      "to": "root:qwen/qwen3-235b-a22b-2507",
+      "type": "HAS_CUSTODY"
+    },
+    {
+      "from": "meta_llama_llama_3_3_70b_instruct__doc-water-cycle",
+      "to": "root:meta-llama/llama-3.3-70b-instruct",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "meta_llama_llama_3_2_1b_instruct__doc-photosynthesis",
+      "to": "root:meta-llama/llama-3.2-1b-instruct",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "qwen_qwen3_8b__doc-photosynthesis",
+      "to": "root:qwen/qwen3-8b",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "meta_llama_llama_3_2_1b_instruct__doc-water-cycle",
+      "to": "root:meta-llama/llama-3.2-1b-instruct",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "qwen_qwen3_8b__doc-water-cycle",
+      "to": "root:qwen/qwen3-8b",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "meta_llama_llama_3_1_8b_instruct__doc-water-cycle",
+      "to": "root:meta-llama/llama-3.1-8b-instruct",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "meta_llama_llama_3_1_8b_instruct__doc-photosynthesis",
+      "to": "root:meta-llama/llama-3.1-8b-instruct",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "meta_llama_llama_3_2_3b_instruct__doc-photosynthesis",
+      "to": "root:meta-llama/llama-3.2-3b-instruct",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "openai_gpt_oss_20b__doc-photosynthesis",
+      "to": "root:openai/gpt-oss-20b",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "meta_llama_llama_3_2_3b_instruct__doc-water-cycle",
+      "to": "root:meta-llama/llama-3.2-3b-instruct",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "openai_gpt_oss_20b__doc-water-cycle",
+      "to": "root:openai/gpt-oss-20b",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "microsoft_phi_4__doc-water-cycle",
+      "to": "root:microsoft/phi-4",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "openai_gpt_oss_120b__doc-photosynthesis",
+      "to": "root:openai/gpt-oss-120b",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "qwen_qwen3_14b__doc-photosynthesis",
+      "to": "root:qwen/qwen3-14b",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "google_gemma_3_27b_it__doc-photosynthesis",
+      "to": "root:google/gemma-3-27b-it",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "qwen_qwen3_14b__doc-water-cycle",
+      "to": "root:qwen/qwen3-14b",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "google_gemma_3_27b_it__doc-water-cycle",
+      "to": "root:google/gemma-3-27b-it",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "microsoft_phi_4__doc-photosynthesis",
+      "to": "root:microsoft/phi-4",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "qwen_qwen3_32b__doc-water-cycle",
+      "to": "root:qwen/qwen3-32b",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "qwen_qwen3_32b__doc-photosynthesis",
+      "to": "root:qwen/qwen3-32b",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "meta_llama_llama_3_3_70b_instruct__doc-photosynthesis",
+      "to": "root:meta-llama/llama-3.3-70b-instruct",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "qwen_qwen3_235b_a22b_2507__doc-water-cycle",
+      "to": "root:qwen/qwen3-235b-a22b-2507",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "openai_gpt_oss_120b__doc-water-cycle",
+      "to": "root:openai/gpt-oss-120b",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "qwen_qwen3_235b_a22b_2507__doc-photosynthesis",
+      "to": "root:qwen/qwen3-235b-a22b-2507",
+      "type": "ROLLS_UP_TO"
+    },
+    {
+      "from": "dec-chosen",
+      "to": "google/gemma-3-27b-it",
+      "type": "SELECTED"
+    },
+    {
+      "from": "ceiling",
+      "to": "10.5281/zenodo.21210575",
+      "type": "CITES"
+    }
+  ],
+  "_meta": {
+    "source": "glasswork",
+    "nodes": 58,
+    "edges": 86
+  }
+}

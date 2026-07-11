@@ -1,0 +1,110 @@
+{
+  "_meta": {
+    "session": "sess-glasswork-nebius-1",
+    "base": "https://api.studio.nebius.com/v1",
+    "generated": "nebius_run.mjs",
+    "note": "Same task/prompt/scorer/FCO scheme on Nebius Token Factory for the models overlapping our Butterbase ladder. Route-comparable."
+  },
+  "rows": [
+    {
+      "model_id": "google/gemma-3-27b-it",
+      "nebius_id": "google/gemma-3-27b-it",
+      "butterbase": {
+        "precision": 1,
+        "recall": 0.9375,
+        "usd_total": 0.000163231,
+        "root": "f4feaf176782b9aa2732d76b3c0f673c6ff68b524e25e59b7952491194e63136"
+      },
+      "nebius": {
+        "precision": 1,
+        "recall": 0.9375,
+        "tokens_in": 320,
+        "tokens_out": 716,
+        "latency_ms": 16553,
+        "usd_cost": null,
+        "root": "50bf8aa3140fb02ee91a028a3aaccd81fe9d76b07d695bd3edb09c2df26f89a0",
+        "parse_ok": true
+      }
+    },
+    {
+      "model_id": "qwen/qwen3-32b",
+      "nebius_id": "Qwen/Qwen3-32B",
+      "butterbase": {
+        "precision": 1,
+        "recall": 0.75,
+        "usd_total": 0.00048444,
+        "root": "f0d3f86a416d45ccfab693e9d83acd36d764d076f4f41ceaeab208be00f886a3"
+      },
+      "nebius": {
+        "precision": 1,
+        "recall": 0.6875,
+        "tokens_in": 338,
+        "tokens_out": 1207,
+        "latency_ms": 35694,
+        "usd_cost": null,
+        "root": "30957df41be825cc9c0e15e7cb7db847bfc6254ce2f2fd9d1aa8c8ae6316f311",
+        "parse_ok": true
+      }
+    },
+    {
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "nebius_id": "meta-llama/Llama-3.3-70B-Instruct",
+      "butterbase": {
+        "precision": 1,
+        "recall": 0.4375,
+        "usd_total": 0.00031228,
+        "root": "debd569e061140bd8f57dbaac108da8ea445cde302054601e29b0f05c3abf5eb"
+      },
+      "nebius": {
+        "precision": 0,
+        "recall": 0,
+        "tokens_in": 382,
+        "tokens_out": 619,
+        "latency_ms": 23904,
+        "usd_cost": null,
+        "root": "6d16df2c9ac2407d2725b6b88e0afb7ede359b48fef276f19be50c38f9ef9cb0",
+        "parse_ok": false
+      }
+    },
+    {
+      "model_id": "openai/gpt-oss-120b",
+      "nebius_id": "openai/gpt-oss-120b",
+      "butterbase": {
+        "precision": 1,
+        "recall": 0.6875,
+        "usd_total": 0.000198734,
+        "root": "3e8a224c1b6c5cc39bba71fe432e5dd1638ca48c2cf24b949e96474696b539ed"
+      },
+      "nebius": {
+        "precision": 1,
+        "recall": 0.6875,
+        "tokens_in": 452,
+        "tokens_out": 1160,
+        "latency_ms": 1447,
+        "usd_cost": null,
+        "root": "07c04817bfd64758bb7e62d00e1ab7d8ec218c5266d0db83c3954dc6cda03729",
+        "parse_ok": true
+      }
+    },
+    {
+      "model_id": "qwen/qwen3-235b-a22b-2507",
+      "nebius_id": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "butterbase": {
+        "precision": 1,
+        "recall": 0.875,
+        "usd_total": 0.00025786,
+        "root": "118c2d92380ac0f8a759f73babdb792950e05508763da545e6396f7db46d7c93"
+      },
+      "nebius": {
+        "precision": 1,
+        "recall": 0.875,
+        "tokens_in": 338,
+        "tokens_out": 647,
+        "latency_ms": 4478,
+        "usd_cost": null,
+        "root": "3817f2415eaf53eb74f7be55dc14c0231b3de6e56bec04213705ab8739dc2a30",
+        "parse_ok": true
+      }
+    }
+  ]
+}
