@@ -1,7 +1,7 @@
 import { RocketRideClient, Question, Answer } from 'rocketride';
 import { writeFileSync } from 'node:fs';
 
-const AUTH = process.env.ROCKETRIDE_AUTH || 'rr_c7d0d6276b8b553b7227e5df9ab5bd1c';
+const AUTH = process.env.ROCKETRIDE_AUTH || process.env.ROCKETRIDE_API_KEY;
 const NEBIUS_KEY = process.env.NEBIUS_API_KEY;
 if (!NEBIUS_KEY) { console.error('MISSING NEBIUS_API_KEY'); process.exit(1); }
 
