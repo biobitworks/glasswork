@@ -23,7 +23,7 @@
         "config": {
           "profile": "llama-3-3-70b",
           "llama-3-3-70b": {
-            "apikey": "REDACTED_NEBIUS_KEY_stored_in_~/.config/ai-keys/keys.env"
+            "apikey": "REDACTED_set_via_NEBIUS_API_KEY_env_var"
           }
         },
         "input": [
@@ -137,7 +137,7 @@
   "server_version": 1,
   "verified_at": "2026-07-11T01:13:30.058Z",
   "notes": [
-    "validate={\"components\":[{\"config\":{\"hideForm\":true,\"mode\":\"Source\",\"type\":\"webhook\"},\"id\":\"src\",\"name\":\"Webhook\",\"provider\":\"webhook\"},{\"config\":{\"llama-3-3-70b\":{\"apikey\":\"REDACTED_NEBIUS_KEY_stored_in_~/.config/ai-keys/keys.env\"",
+    "validate={\"components\":[{\"config\":{\"hideForm\":true,\"mode\":\"Source\",\"type\":\"webhook\"},\"id\":\"src\",\"name\":\"Webhook\",\"provider\":\"webhook\"},{\"config\":{\"llama-3-3-70b\":{\"apikey\":\"REDACTED_set_via_NEBIUS_API_KEY_env_var\"",
     "status.completed stayed false because the webhook source node is a persistent HTTP listener that never self-terminates; the chat() call returned a real terminal PIPELINE_RESULT with populated answers, which is the pipeline output.",
     "validate() reported ccode 40 wanting a {pipeline:{...}} wrapper, but use()+chat() ran the same raw config successfully and returned real output."
   ],
