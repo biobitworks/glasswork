@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "source": "Butterbase AI models pricing (live gateway, OpenRouter-style; provider varies e.g. DeepInfra/Cloudflare), captured 2026-07-10",
+    "prices": "USD per 1M tokens (input/output) as listed by Butterbase",
+    "authoritative_cost": "Butterbase returns per-call usage.cost in every chat/completions response — the demo's real cost number; these list prices are the catalog reference/seed",
+    "all_open_weight": true,
+    "note": "curated open-weight extraction-capable ladder for the small-vs-large demo; verify IDs live via GET /v1/public/models before hardcoding"
+  },
+  "headline_pair": ["meta-llama/llama-3.2-1b-instruct", "meta-llama/llama-3.3-70b-instruct"],
+  "models": [
+    {"model_id": "meta-llama/llama-3.2-1b-instruct", "family": "llama", "params_b": 1, "tier": "small", "usd_per_1m_in": 0.03, "usd_per_1m_out": 0.24, "context": "131K"},
+    {"model_id": "meta-llama/llama-3.2-3b-instruct", "family": "llama", "params_b": 3, "tier": "small", "usd_per_1m_in": 0.06, "usd_per_1m_out": 0.40, "context": "131K"},
+    {"model_id": "meta-llama/llama-3.1-8b-instruct", "family": "llama", "params_b": 8, "tier": "small", "usd_per_1m_in": 0.02, "usd_per_1m_out": 0.04, "context": "131K", "note": "cheapest in this set — a cost-frontier surprise"},
+    {"model_id": "qwen/qwen3-8b", "family": "qwen", "params_b": 8, "tier": "small", "usd_per_1m_in": 0.14, "usd_per_1m_out": 0.55, "context": "131K"},
+    {"model_id": "openai/gpt-oss-20b", "family": "gpt-oss", "params_b": 20, "tier": "mid", "usd_per_1m_in": 0.03, "usd_per_1m_out": 0.17, "context": "131K"},
+    {"model_id": "microsoft/phi-4", "family": "phi", "params_b": 14, "tier": "mid", "usd_per_1m_in": 0.08, "usd_per_1m_out": 0.17, "context": "16K"},
+    {"model_id": "qwen/qwen3-14b", "family": "qwen", "params_b": 14, "tier": "mid", "usd_per_1m_in": 0.12, "usd_per_1m_out": 0.29, "context": "132K"},
+    {"model_id": "google/gemma-3-27b-it", "family": "gemma", "params_b": 27, "tier": "mid", "usd_per_1m_in": 0.10, "usd_per_1m_out": 0.19, "context": "131K"},
+    {"model_id": "qwen/qwen3-32b", "family": "qwen", "params_b": 32, "tier": "mid", "usd_per_1m_in": 0.10, "usd_per_1m_out": 0.34, "context": "131K"},
+    {"model_id": "meta-llama/llama-3.3-70b-instruct", "family": "llama", "params_b": 70, "tier": "large", "usd_per_1m_in": 0.12, "usd_per_1m_out": 0.38, "context": "131K"},
+    {"model_id": "openai/gpt-oss-120b", "family": "gpt-oss", "params_b": 120, "tier": "large", "usd_per_1m_in": 0.04, "usd_per_1m_out": 0.22, "context": "131K"},
+    {"model_id": "qwen/qwen3-235b-a22b-2507", "family": "qwen", "params_b": 235, "active_b": 22, "tier": "large", "usd_per_1m_in": 0.11, "usd_per_1m_out": 0.12, "context": "262K", "note": "MoE — huge but cheap; the cost-frontier headline"}
+  ]
+}

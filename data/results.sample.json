@@ -1,0 +1,2268 @@
+{
+  "_meta": {
+    "app_id": "app_kjnqcukp84py",
+    "session": "sess-glasswork-demo-1",
+    "generated_by": "run.mjs",
+    "pass_floor": {
+      "precision": 0.8,
+      "recall": 0.75
+    },
+    "corpus": {
+      "docs": 2,
+      "gold_claims": 16
+    },
+    "parse_failures": [
+      {
+        "model_id": "meta-llama/llama-3.3-70b-instruct",
+        "item_id": "doc-water-cycle",
+        "status": "invalid_json"
+      }
+    ]
+  },
+  "docs": [
+    {
+      "id": "doc-photosynthesis",
+      "title": "Photosynthesis (biology primer)",
+      "doc_text": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy. It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll. During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct. The Calvin cycle uses carbon dioxide from the air to build glucose. The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+      "gold": [
+        {
+          "id": "p1",
+          "text": "Photosynthesis converts light energy into chemical energy.",
+          "kw": [
+            "light",
+            "chemical"
+          ]
+        },
+        {
+          "id": "p2",
+          "text": "It is carried out by green plants, algae, and some bacteria.",
+          "kw": [
+            "plants",
+            "algae"
+          ]
+        },
+        {
+          "id": "p3",
+          "text": "It takes place mainly in the chloroplasts.",
+          "kw": [
+            "chloroplast"
+          ]
+        },
+        {
+          "id": "p4",
+          "text": "Chloroplasts contain the pigment chlorophyll.",
+          "kw": [
+            "chlorophyll"
+          ]
+        },
+        {
+          "id": "p5",
+          "text": "The light-dependent reactions split water molecules.",
+          "kw": [
+            "water",
+            "split"
+          ]
+        },
+        {
+          "id": "p6",
+          "text": "Oxygen is released as a byproduct.",
+          "kw": [
+            "releas",
+            "oxygen"
+          ]
+        },
+        {
+          "id": "p7",
+          "text": "The Calvin cycle uses carbon dioxide to build glucose.",
+          "kw": [
+            "calvin",
+            "glucose"
+          ]
+        },
+        {
+          "id": "p8",
+          "text": "The overall reaction yields glucose from six carbon dioxide and six water.",
+          "kw": [
+            "six",
+            "glucose"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "doc-water-cycle",
+      "title": "The water cycle (earth science primer)",
+      "doc_text": "The water cycle describes how water moves continuously through the Earth and its atmosphere. Evaporation turns liquid water from oceans and lakes into water vapor. As the vapor rises and cools, condensation forms clouds. When the droplets grow heavy enough, precipitation falls as rain or snow. Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean. The Sun provides the energy that drives the entire water cycle.",
+      "gold": [
+        {
+          "id": "w1",
+          "text": "Water moves through the Earth and its atmosphere.",
+          "kw": [
+            "atmosphere"
+          ]
+        },
+        {
+          "id": "w2",
+          "text": "Evaporation turns liquid water into water vapor.",
+          "kw": [
+            "evaporation",
+            "vapor"
+          ]
+        },
+        {
+          "id": "w3",
+          "text": "Water evaporates from oceans and lakes.",
+          "kw": [
+            "lakes"
+          ]
+        },
+        {
+          "id": "w4",
+          "text": "Condensation forms clouds.",
+          "kw": [
+            "condensation",
+            "cloud"
+          ]
+        },
+        {
+          "id": "w5",
+          "text": "Precipitation falls as rain or snow.",
+          "kw": [
+            "precipitation"
+          ]
+        },
+        {
+          "id": "w6",
+          "text": "Water flows into rivers through runoff.",
+          "kw": [
+            "runoff"
+          ]
+        },
+        {
+          "id": "w7",
+          "text": "Water eventually returns to the ocean.",
+          "kw": [
+            "return",
+            "ocean"
+          ]
+        },
+        {
+          "id": "w8",
+          "text": "The Sun provides the energy that drives the cycle.",
+          "kw": [
+            "sun",
+            "energy"
+          ]
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "model_id": "meta-llama/llama-3.2-1b-instruct",
+      "family": "llama",
+      "params_b": 1,
+      "tier": "small",
+      "in": 0.0324,
+      "out": 0.2412,
+      "context": "131K"
+    },
+    {
+      "model_id": "meta-llama/llama-3.2-3b-instruct",
+      "family": "llama",
+      "params_b": 3,
+      "tier": "small",
+      "in": 0.06,
+      "out": 0.396,
+      "context": "131K"
+    },
+    {
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "family": "llama",
+      "params_b": 8,
+      "tier": "small",
+      "in": 0.024,
+      "out": 0.036,
+      "context": "131K"
+    },
+    {
+      "model_id": "qwen/qwen3-8b",
+      "family": "qwen",
+      "params_b": 8,
+      "tier": "small",
+      "in": 0.1404,
+      "out": 0.546,
+      "context": "131K"
+    },
+    {
+      "model_id": "openai/gpt-oss-20b",
+      "family": "gpt-oss",
+      "params_b": 20,
+      "tier": "mid",
+      "in": 0.0348,
+      "out": 0.168,
+      "context": "131K"
+    },
+    {
+      "model_id": "microsoft/phi-4",
+      "family": "phi",
+      "params_b": 14,
+      "tier": "mid",
+      "in": 0.084,
+      "out": 0.168,
+      "context": "16K"
+    },
+    {
+      "model_id": "qwen/qwen3-14b",
+      "family": "qwen",
+      "params_b": 14,
+      "tier": "mid",
+      "in": 0.12,
+      "out": 0.288,
+      "context": "131K"
+    },
+    {
+      "model_id": "google/gemma-3-27b-it",
+      "family": "gemma",
+      "params_b": 27,
+      "tier": "mid",
+      "in": 0.096,
+      "out": 0.192,
+      "context": "131K"
+    },
+    {
+      "model_id": "qwen/qwen3-32b",
+      "family": "qwen",
+      "params_b": 32,
+      "tier": "mid",
+      "in": 0.096,
+      "out": 0.336,
+      "context": "131K"
+    },
+    {
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "family": "llama",
+      "params_b": 70,
+      "tier": "large",
+      "in": 0.12,
+      "out": 0.384,
+      "context": "131K"
+    },
+    {
+      "model_id": "openai/gpt-oss-120b",
+      "family": "gpt-oss",
+      "params_b": 120,
+      "tier": "large",
+      "in": 0.0432,
+      "out": 0.216,
+      "context": "131K"
+    },
+    {
+      "model_id": "qwen/qwen3-235b-a22b-2507",
+      "family": "qwen",
+      "params_b": 235,
+      "active_b": 22,
+      "tier": "large",
+      "in": 0.108,
+      "out": 0.12,
+      "context": "262K"
+    }
+  ],
+  "runs": [
+    {
+      "id": "meta_llama_llama_3_2_1b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.2-1b-instruct",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.625,
+      "f1": 0.7692,
+      "tp": 5,
+      "asserted": 5,
+      "gold_n": 8,
+      "tokens_in": 177,
+      "tokens_out": 281,
+      "usd_cost": 0.00006126,
+      "cost_source": "measured",
+      "latency_ms": 5048,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "08ad298d05508e4cecc6a166a8ccbe44e3c0d4b70bcf41fd66140357418e6d92",
+      "op_preimage": "meta-llama/llama-3.2-1b-instruct|sess-glasswork-demo-1|177|281|0.0000612600",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|08ad298d05508e4cecc6a166a8ccbe44e3c0d4b70bcf41fd66140357418e6d92",
+      "op_leaf": "cd7a3aa153561595d86e3bbc9fe66012a0c7eb2bc9790d559eca6a4580b8c410",
+      "content_leaf": "cfa1f9f169d604e4d97daf10385eeb4cbe4ab0d46208e2cf9b49756e5e35d875",
+      "output_text": "```json\n[\n  {\n    \"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]\n```",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "meta_llama_llama_3_2_1b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.2-1b-instruct",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "As the vapor rises and cools, condensation forms clouds.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.375,
+      "f1": 0.5455,
+      "tp": 3,
+      "asserted": 3,
+      "gold_n": 8,
+      "tokens_in": 167,
+      "tokens_out": 142,
+      "usd_cost": 0.000033051,
+      "cost_source": "measured",
+      "latency_ms": 3921,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "19697bd86645f6e54229962b715537fb529d5b82c8675a50c167a203567597b1",
+      "op_preimage": "meta-llama/llama-3.2-1b-instruct|sess-glasswork-demo-1|167|142|0.0000330510",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|19697bd86645f6e54229962b715537fb529d5b82c8675a50c167a203567597b1",
+      "op_leaf": "4aee1b212758653de2ee9c799bb1d120e655c343bdf9b99a12c7951cdb1ee6e2",
+      "content_leaf": "22d7735e3e55f774589a4e17d96ec0802f68635d52412fd04891926f2b651347",
+      "output_text": "```json\n[\n  {\n    \"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\",\n    \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"\n  },\n  {\n    \"claim\": \"As the vapor rises and cools, condensation forms clouds.\",\n    \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"\n  },\n  {\n    \"claim\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\",\n    \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"\n  }\n]\n```",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "meta_llama_llama_3_2_3b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.2-3b-instruct",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.625,
+      "f1": 0.7692,
+      "tp": 5,
+      "asserted": 5,
+      "gold_n": 8,
+      "tokens_in": 177,
+      "tokens_out": 255,
+      "usd_cost": 0.000093,
+      "cost_source": "measured",
+      "latency_ms": 6748,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "056fa12e6c0da64261768b8703aa81468185b032a51bff5e66c638a9cf6273ce",
+      "op_preimage": "meta-llama/llama-3.2-3b-instruct|sess-glasswork-demo-1|177|255|0.0000930000",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|056fa12e6c0da64261768b8703aa81468185b032a51bff5e66c638a9cf6273ce",
+      "op_leaf": "d9ad23e4218a110ca64bb8f818fa58b9cb417884c434d1c570e329ad2e9e127e",
+      "content_leaf": "47132ce0d84b376a4097adc71c113f0587c05a4cc582a8a010ba54eefffcf54a",
+      "output_text": "```\n[\n  {\"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\", \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"},\n  {\"claim\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\", \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"},\n  {\"claim\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\", \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"},\n  {\"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\", \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"},\n  {\"claim\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\", \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"}\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "meta_llama_llama_3_2_3b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.2-3b-instruct",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "grounded": true
+        },
+        {
+          "claim": "As the vapor rises and cools, condensation forms clouds.",
+          "supporting_span": "As the vapor rises and cools, condensation forms clouds.",
+          "grounded": true
+        },
+        {
+          "claim": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "supporting_span": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "grounded": true
+        },
+        {
+          "claim": "The Sun provides the energy that drives the entire water cycle.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "tp": 6,
+      "asserted": 6,
+      "gold_n": 8,
+      "tokens_in": 186,
+      "tokens_out": 247,
+      "usd_cost": 0.0000922124,
+      "cost_source": "measured",
+      "latency_ms": 4001,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "febf9e79c257d7f833fc4f157d3683f411c75f693ca756c8d22b4ab0e14d56be",
+      "op_preimage": "meta-llama/llama-3.2-3b-instruct|sess-glasswork-demo-1|186|247|0.0000922124",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|febf9e79c257d7f833fc4f157d3683f411c75f693ca756c8d22b4ab0e14d56be",
+      "op_leaf": "2e86a834f670e0bdc5a2436264040d988b89e2f38002214328beae5b4268533e",
+      "content_leaf": "80ae637622af20f5319aa68abfda869bc2dacc0cec90a74310e416d53612123e",
+      "output_text": "```\n[\n  {\"claim\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\", \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"},\n  {\"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\", \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\"},\n  {\"claim\": \"As the vapor rises and cools, condensation forms clouds.\", \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds.\"},\n  {\"claim\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\", \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"},\n  {\"claim\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\", \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\"},\n  {\"claim\": \"The Sun provides the energy that drives the entire water cycle.\", \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"}\n]\n```",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "meta_llama_llama_3_1_8b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.625,
+      "f1": 0.7692,
+      "tp": 5,
+      "asserted": 5,
+      "gold_n": 8,
+      "tokens_in": 176,
+      "tokens_out": 276,
+      "usd_cost": 0.0000118,
+      "cost_source": "measured",
+      "latency_ms": 6297,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "5e058aa44d2f5a35944378d9fe6737a7a1f554e29f0dd8302b51ebfd82bec532",
+      "op_preimage": "meta-llama/llama-3.1-8b-instruct|sess-glasswork-demo-1|176|276|0.0000118000",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|5e058aa44d2f5a35944378d9fe6737a7a1f554e29f0dd8302b51ebfd82bec532",
+      "op_leaf": "e1cc0eaa9a6972213a2f1e17eec684261163831366c67fa72af2d80e4b42aa6c",
+      "content_leaf": "d28f9e39afe0793d5f41eee3233ec8e894e20894884029965db84c29ff46831c",
+      "output_text": "[\n  {\n    \"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "meta_llama_llama_3_1_8b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "grounded": true
+        },
+        {
+          "claim": "As the vapor rises and cools, condensation forms clouds.",
+          "supporting_span": "As the vapor rises and cools, condensation forms clouds.",
+          "grounded": true
+        },
+        {
+          "claim": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "supporting_span": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "grounded": true
+        },
+        {
+          "claim": "The Sun provides the energy that drives the entire water cycle.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "tp": 6,
+      "asserted": 6,
+      "gold_n": 8,
+      "tokens_in": 166,
+      "tokens_out": 272,
+      "usd_cost": 0.00001148,
+      "cost_source": "measured",
+      "latency_ms": 5948,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "e8a2c1b1cfa9b48339dd67dfc361dc235757db10d1acc57b424d79621b1ce739",
+      "op_preimage": "meta-llama/llama-3.1-8b-instruct|sess-glasswork-demo-1|166|272|0.0000114800",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|e8a2c1b1cfa9b48339dd67dfc361dc235757db10d1acc57b424d79621b1ce739",
+      "op_leaf": "29561f26b35f4fdaa0ba9fd53ecfabf58cc0f3c3ec755e55476cba0b5d4be123",
+      "content_leaf": "04e6941ebd753c5859e26d12d6ddd188fb4d1f072d6e8409f4fcf85e630b11b6",
+      "output_text": "[\n  {\n    \"claim\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\",\n    \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"\n  },\n  {\n    \"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\",\n    \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\"\n  },\n  {\n    \"claim\": \"As the vapor rises and cools, condensation forms clouds.\",\n    \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds.\"\n  },\n  {\n    \"claim\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\",\n    \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"\n  },\n  {\n    \"claim\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\",\n    \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\"\n  },\n  {\n    \"claim\": \"The Sun provides the energy that drives the entire water cycle.\",\n    \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "qwen_qwen3_8b__doc-photosynthesis",
+      "model_id": "qwen/qwen3-8b",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.625,
+      "f1": 0.7692,
+      "tp": 5,
+      "asserted": 5,
+      "gold_n": 8,
+      "tokens_in": 174,
+      "tokens_out": 650,
+      "usd_cost": 0.000316108,
+      "cost_source": "measured",
+      "latency_ms": 12162,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "5e058aa44d2f5a35944378d9fe6737a7a1f554e29f0dd8302b51ebfd82bec532",
+      "op_preimage": "qwen/qwen3-8b|sess-glasswork-demo-1|174|650|0.0003161080",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|5e058aa44d2f5a35944378d9fe6737a7a1f554e29f0dd8302b51ebfd82bec532",
+      "op_leaf": "023e419577a337d62af0a145236f52930321e7f3af3a0c0a0b6f1a9859405304",
+      "content_leaf": "d28f9e39afe0793d5f41eee3233ec8e894e20894884029965db84c29ff46831c",
+      "output_text": "[\n  {\n    \"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "qwen_qwen3_8b__doc-water-cycle",
+      "model_id": "qwen/qwen3-8b",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "grounded": true
+        },
+        {
+          "claim": "As the vapor rises and cools, condensation forms clouds.",
+          "supporting_span": "As the vapor rises and cools, condensation forms clouds.",
+          "grounded": true
+        },
+        {
+          "claim": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "supporting_span": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "grounded": true
+        },
+        {
+          "claim": "The Sun provides the energy that drives the entire water cycle.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "tp": 6,
+      "asserted": 6,
+      "gold_n": 8,
+      "tokens_in": 164,
+      "tokens_out": 719,
+      "usd_cost": 0.000346333,
+      "cost_source": "measured",
+      "latency_ms": 12918,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "854bf32502c01f9ba5d1ec40a85dcddc97e8a752bc298d32f66c44e905b47ac6",
+      "op_preimage": "qwen/qwen3-8b|sess-glasswork-demo-1|164|719|0.0003463330",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|854bf32502c01f9ba5d1ec40a85dcddc97e8a752bc298d32f66c44e905b47ac6",
+      "op_leaf": "c522b21e7b7589bcfc3017fc1c0bf2c7a2ad4d3b018cd13f015b6b6988a9e413",
+      "content_leaf": "e1c90c2fb4b6e2d7b14076ed0bf6625d3bfaec94860bee53419f91c290f8fd75",
+      "output_text": "[{\"claim\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\", \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"}, {\"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\", \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\"}, {\"claim\": \"As the vapor rises and cools, condensation forms clouds.\", \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds.\"}, {\"claim\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\", \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"}, {\"claim\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\", \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\"}, {\"claim\": \"The Sun provides the energy that drives the entire water cycle.\", \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"}]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "openai_gpt_oss_20b__doc-photosynthesis",
+      "model_id": "openai/gpt-oss-20b",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.625,
+      "f1": 0.7692,
+      "tp": 5,
+      "asserted": 5,
+      "gold_n": 8,
+      "tokens_in": 233,
+      "tokens_out": 718,
+      "usd_cost": 0.00011702,
+      "cost_source": "measured",
+      "latency_ms": 10741,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "5e058aa44d2f5a35944378d9fe6737a7a1f554e29f0dd8302b51ebfd82bec532",
+      "op_preimage": "openai/gpt-oss-20b|sess-glasswork-demo-1|233|718|0.0001170200",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|5e058aa44d2f5a35944378d9fe6737a7a1f554e29f0dd8302b51ebfd82bec532",
+      "op_leaf": "4c965a258b8f4b5020107bc1aa42963bba7c17526a603a3f22843b13d118e9ef",
+      "content_leaf": "d28f9e39afe0793d5f41eee3233ec8e894e20894884029965db84c29ff46831c",
+      "output_text": "[\n  {\n    \"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "openai_gpt_oss_20b__doc-water-cycle",
+      "model_id": "openai/gpt-oss-20b",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "grounded": true
+        },
+        {
+          "claim": "As the vapor rises and cools, condensation forms clouds.",
+          "supporting_span": "As the vapor rises and cools, condensation forms clouds.",
+          "grounded": true
+        },
+        {
+          "claim": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "supporting_span": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "grounded": true
+        },
+        {
+          "claim": "The Sun provides the energy that drives the entire water cycle.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "tp": 6,
+      "asserted": 6,
+      "gold_n": 8,
+      "tokens_in": 219,
+      "tokens_out": 818,
+      "usd_cost": 0.00011291,
+      "cost_source": "measured",
+      "latency_ms": 19740,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "e8a2c1b1cfa9b48339dd67dfc361dc235757db10d1acc57b424d79621b1ce739",
+      "op_preimage": "openai/gpt-oss-20b|sess-glasswork-demo-1|219|818|0.0001129100",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|e8a2c1b1cfa9b48339dd67dfc361dc235757db10d1acc57b424d79621b1ce739",
+      "op_leaf": "250242d46b861dd78d4ee8a92ab653dc373516883da6067d95eff95b68d27f97",
+      "content_leaf": "04e6941ebd753c5859e26d12d6ddd188fb4d1f072d6e8409f4fcf85e630b11b6",
+      "output_text": "[\n  {\n    \"claim\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\",\n    \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"\n  },\n  {\n    \"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\",\n    \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\"\n  },\n  {\n    \"claim\": \"As the vapor rises and cools, condensation forms clouds.\",\n    \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds.\"\n  },\n  {\n    \"claim\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\",\n    \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"\n  },\n  {\n    \"claim\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\",\n    \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\"\n  },\n  {\n    \"claim\": \"The Sun provides the energy that drives the entire water cycle.\",\n    \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "microsoft_phi_4__doc-photosynthesis",
+      "model_id": "microsoft/phi-4",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "Photosynthesis takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.625,
+      "f1": 0.7692,
+      "tp": 5,
+      "asserted": 5,
+      "gold_n": 8,
+      "tokens_in": 172,
+      "tokens_out": 282,
+      "usd_cost": 0.00005152,
+      "cost_source": "measured",
+      "latency_ms": 5133,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "1e1bcf3c1e9072b99fa18911dbc411fbdb5b4c39cdac57dd39d804977e6b8c7c",
+      "op_preimage": "microsoft/phi-4|sess-glasswork-demo-1|172|282|0.0000515200",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|1e1bcf3c1e9072b99fa18911dbc411fbdb5b4c39cdac57dd39d804977e6b8c7c",
+      "op_leaf": "edf8b316d3d935681f369542d8265419bcce3d3285b1c686f79825cc934e5801",
+      "content_leaf": "a66886c610ce96edd63ea2c2fdb6fe17fd728012a73117e803f856d845db5c9f",
+      "output_text": "```json\n[\n  {\n    \"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"Photosynthesis takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]\n```",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "microsoft_phi_4__doc-water-cycle",
+      "model_id": "microsoft/phi-4",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "grounded": true
+        },
+        {
+          "claim": "As the vapor rises and cools, condensation forms clouds.",
+          "supporting_span": "As the vapor rises and cools, condensation forms clouds.",
+          "grounded": true
+        },
+        {
+          "claim": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "supporting_span": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "grounded": true
+        },
+        {
+          "claim": "The Sun provides the energy that drives the entire water cycle.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "tp": 6,
+      "asserted": 6,
+      "gold_n": 8,
+      "tokens_in": 162,
+      "tokens_out": 277,
+      "usd_cost": 0.00005012,
+      "cost_source": "measured",
+      "latency_ms": 5213,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "a54c251054df037d326decc8227142b7fe76c145a5605e7828b68863bb9a36ab",
+      "op_preimage": "microsoft/phi-4|sess-glasswork-demo-1|162|277|0.0000501200",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|a54c251054df037d326decc8227142b7fe76c145a5605e7828b68863bb9a36ab",
+      "op_leaf": "d544234badecef3c018d23214d4e25390ecebc1dba77a8fc993e54ace8eb803b",
+      "content_leaf": "fe700c78650f2ac634ea4de8f44a7e7015787c291c27f3d204820a59abbf0798",
+      "output_text": "```json\n[\n  {\n    \"claim\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\",\n    \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"\n  },\n  {\n    \"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\",\n    \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\"\n  },\n  {\n    \"claim\": \"As the vapor rises and cools, condensation forms clouds.\",\n    \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds.\"\n  },\n  {\n    \"claim\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\",\n    \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"\n  },\n  {\n    \"claim\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\",\n    \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\"\n  },\n  {\n    \"claim\": \"The Sun provides the energy that drives the entire water cycle.\",\n    \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"\n  }\n]\n```",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "qwen_qwen3_14b__doc-photosynthesis",
+      "model_id": "qwen/qwen3-14b",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "Photosynthesis takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.625,
+      "f1": 0.7692,
+      "tp": 5,
+      "asserted": 5,
+      "gold_n": 8,
+      "tokens_in": 175,
+      "tokens_out": 648,
+      "usd_cost": 0.0006294925,
+      "cost_source": "measured",
+      "latency_ms": 12691,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "48eff42ac10b829ec16d43a6546baba62fff324258a27a8d64415c3d00251732",
+      "op_preimage": "qwen/qwen3-14b|sess-glasswork-demo-1|175|648|0.0006294925",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|48eff42ac10b829ec16d43a6546baba62fff324258a27a8d64415c3d00251732",
+      "op_leaf": "c6c3e41ff6c9503ca00ca0689a170bf1970f78c118b8f9c8df0f56bd39ebabf6",
+      "content_leaf": "3053a933c2d9e3c1b17fd35c9b3309de7c4cd5faccc1eb96b39b599d5671fda5",
+      "output_text": "[\n  {\n    \"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"Photosynthesis takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "qwen_qwen3_14b__doc-water-cycle",
+      "model_id": "qwen/qwen3-14b",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "grounded": true
+        },
+        {
+          "claim": "Condensation forms clouds as the vapor rises and cools.",
+          "supporting_span": "As the vapor rises and cools, condensation forms clouds.",
+          "grounded": true
+        },
+        {
+          "claim": "Precipitation falls as rain or snow when droplets grow heavy enough.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water that reaches the ground can flow into rivers through runoff before returning to the ocean.",
+          "supporting_span": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "grounded": true
+        },
+        {
+          "claim": "The Sun provides the energy that drives the entire water cycle.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "tp": 6,
+      "asserted": 6,
+      "gold_n": 8,
+      "tokens_in": 165,
+      "tokens_out": 568,
+      "usd_cost": 0.00015612,
+      "cost_source": "measured",
+      "latency_ms": 14932,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "6bca8db67896f573e49772df13ac10dc31afd51be5f97fcbc17424731f655314",
+      "op_preimage": "qwen/qwen3-14b|sess-glasswork-demo-1|165|568|0.0001561200",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|6bca8db67896f573e49772df13ac10dc31afd51be5f97fcbc17424731f655314",
+      "op_leaf": "6f3e2642bc34de01fb009b65af594cb9adf4754f71535c2ad717d7b1e4406278",
+      "content_leaf": "6d1a5ccd13e5620f46cd511b6a88702759698bee4c336cfe1c44f9daaa769890",
+      "output_text": "[\n  {\n    \"claim\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\",\n    \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"\n  },\n  {\n    \"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\",\n    \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\"\n  },\n  {\n    \"claim\": \"Condensation forms clouds as the vapor rises and cools.\",\n    \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds.\"\n  },\n  {\n    \"claim\": \"Precipitation falls as rain or snow when droplets grow heavy enough.\",\n    \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"\n  },\n  {\n    \"claim\": \"Water that reaches the ground can flow into rivers through runoff before returning to the ocean.\",\n    \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\"\n  },\n  {\n    \"claim\": \"The Sun provides the energy that drives the entire water cycle.\",\n    \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "google_gemma_3_27b_it__doc-photosynthesis",
+      "model_id": "google/gemma-3-27b-it",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis converts light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "Green plants, algae, and some bacteria perform photosynthesis.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "Photosynthesis takes place mainly in chloroplasts.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "Chloroplasts contain chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "Water molecules are split during light-dependent reactions.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "Oxygen is released as a byproduct during light-dependent reactions.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "tp": 8,
+      "asserted": 8,
+      "gold_n": 8,
+      "tokens_in": 169,
+      "tokens_out": 412,
+      "usd_cost": 0.000102511,
+      "cost_source": "measured",
+      "latency_ms": 19933,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "93c03147569f52e2e39f01096fa26a9dee3c671fe6d5892b5dc7701f0a588932",
+      "op_preimage": "google/gemma-3-27b-it|sess-glasswork-demo-1|169|412|0.0001025110",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|93c03147569f52e2e39f01096fa26a9dee3c671fe6d5892b5dc7701f0a588932",
+      "op_leaf": "431b4c4c3b68f7e3ef713debb398f77a7739bde8e7b4321ea2ad9e24f79a9eea",
+      "content_leaf": "a64b280ea5fe43b5d926535435b9605a224921d86c71a15bc175161e637aa206",
+      "output_text": "\n```json\n[\n  {\n    \"claim\": \"Photosynthesis converts light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"Green plants, algae, and some bacteria perform photosynthesis.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"Photosynthesis takes place mainly in chloroplasts.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"Chloroplasts contain chlorophyll.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"Water molecules are split during light-dependent reactions.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"Oxygen is released as a byproduct during light-dependent reactions.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]\n```",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "google_gemma_3_27b_it__doc-water-cycle",
+      "model_id": "google/gemma-3-27b-it",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "grounded": true
+        },
+        {
+          "claim": "Condensation forms clouds.",
+          "supporting_span": "As the vapor rises and cools, condensation forms clouds.",
+          "grounded": true
+        },
+        {
+          "claim": "Precipitation falls as rain or snow.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water can flow into rivers through runoff.",
+          "supporting_span": "Water that reaches the ground can flow into rivers through runoff,",
+          "grounded": true
+        },
+        {
+          "claim": "Water eventually returns to the ocean.",
+          "supporting_span": "before eventually returning to the ocean.",
+          "grounded": true
+        },
+        {
+          "claim": "The Sun provides the energy that drives the entire water cycle.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.875,
+      "f1": 0.9333,
+      "tp": 7,
+      "asserted": 7,
+      "gold_n": 8,
+      "tokens_in": 155,
+      "tokens_out": 302,
+      "usd_cost": 0.00006072,
+      "cost_source": "measured",
+      "latency_ms": 19718,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "e6392e272fcb7c3a2bab4201b8b1b0a5ce3d4085f4545d0330beb1ffd7938f5b",
+      "op_preimage": "google/gemma-3-27b-it|sess-glasswork-demo-1|155|302|0.0000607200",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|e6392e272fcb7c3a2bab4201b8b1b0a5ce3d4085f4545d0330beb1ffd7938f5b",
+      "op_leaf": "ca01f8833a6aeae40b5af4f6ce0e6841a3392cfcda10b2e53518f9d5421b2d2a",
+      "content_leaf": "108e245e07272b64067d7b250765979f1d8d80aa048899a8871f70e1331dcd66",
+      "output_text": "```json\n[\n  {\n    \"claim\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\",\n    \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"\n  },\n  {\n    \"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\",\n    \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\"\n  },\n  {\n    \"claim\": \"Condensation forms clouds.\",\n    \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds.\"\n  },\n  {\n    \"claim\": \"Precipitation falls as rain or snow.\",\n    \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"\n  },\n  {\n    \"claim\": \"Water can flow into rivers through runoff.\",\n    \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff,\"\n  },\n  {\n    \"claim\": \"Water eventually returns to the ocean.\",\n    \"supporting_span\": \"before eventually returning to the ocean.\"\n  },\n  {\n    \"claim\": \"The Sun provides the energy that drives the entire water cycle.\",\n    \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"\n  }\n]\n```",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "qwen_qwen3_32b__doc-photosynthesis",
+      "model_id": "qwen/qwen3-32b",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "Photosynthesis takes place mainly in the chloroplasts.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "Chloroplasts contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction of photosynthesis converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "tp": 6,
+      "asserted": 6,
+      "gold_n": 8,
+      "tokens_in": 174,
+      "tokens_out": 709,
+      "usd_cost": 0.00031304,
+      "cost_source": "measured",
+      "latency_ms": 8804,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "f2dd01e050434eba72d061464a504285c6b654acd572af0c37212025046ba8b5",
+      "op_preimage": "qwen/qwen3-32b|sess-glasswork-demo-1|174|709|0.0003130400",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|f2dd01e050434eba72d061464a504285c6b654acd572af0c37212025046ba8b5",
+      "op_leaf": "4f6348897bf73c636d703a7bea1893641c48a1502178dd38c15ddae1bf15d60b",
+      "content_leaf": "390461569f511766f92c4810d8081f43d6cbeea85e0320aff5003651ceeca04c",
+      "output_text": "[\n  {\n    \"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"Photosynthesis takes place mainly in the chloroplasts.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"Chloroplasts contain the green pigment chlorophyll.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction of photosynthesis converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "qwen_qwen3_32b__doc-water-cycle",
+      "model_id": "qwen/qwen3-32b",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "grounded": true
+        },
+        {
+          "claim": "As the vapor rises and cools, condensation forms clouds.",
+          "supporting_span": "As the vapor rises and cools, condensation forms clouds.",
+          "grounded": true
+        },
+        {
+          "claim": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "supporting_span": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "grounded": true
+        },
+        {
+          "claim": "The Sun provides the energy that drives the entire water cycle.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "tp": 6,
+      "asserted": 6,
+      "gold_n": 8,
+      "tokens_in": 165,
+      "tokens_out": 565,
+      "usd_cost": 0.0001714,
+      "cost_source": "measured",
+      "latency_ms": 10843,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "e8a2c1b1cfa9b48339dd67dfc361dc235757db10d1acc57b424d79621b1ce739",
+      "op_preimage": "qwen/qwen3-32b|sess-glasswork-demo-1|165|565|0.0001714000",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|e8a2c1b1cfa9b48339dd67dfc361dc235757db10d1acc57b424d79621b1ce739",
+      "op_leaf": "65a88dc0f1850b105c4bc5f9657fdf988a8646ccc17e7b41b7a359f4ef78aad9",
+      "content_leaf": "04e6941ebd753c5859e26d12d6ddd188fb4d1f072d6e8409f4fcf85e630b11b6",
+      "output_text": "[\n  {\n    \"claim\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\",\n    \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"\n  },\n  {\n    \"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\",\n    \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\"\n  },\n  {\n    \"claim\": \"As the vapor rises and cools, condensation forms clouds.\",\n    \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds.\"\n  },\n  {\n    \"claim\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\",\n    \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"\n  },\n  {\n    \"claim\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\",\n    \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\"\n  },\n  {\n    \"claim\": \"The Sun provides the energy that drives the entire water cycle.\",\n    \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "meta_llama_llama_3_3_70b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "Photosynthesis takes place mainly in the chloroplasts.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "Chloroplasts contain the green pigment chlorophyll.",
+          "supporting_span": "which contain the green pigment chlorophyll",
+          "grounded": true
+        },
+        {
+          "claim": "Water molecules are split during the light-dependent reactions.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The light-dependent reactions release oxygen as a byproduct.",
+          "supporting_span": "releasing oxygen as a byproduct",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.875,
+      "f1": 0.9333,
+      "tp": 7,
+      "asserted": 7,
+      "gold_n": 8,
+      "tokens_in": 177,
+      "tokens_out": 333,
+      "usd_cost": 0.00020544,
+      "cost_source": "measured",
+      "latency_ms": 3857,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "5ef4b5d39583be4c01800244f33d5220e90e5f870ba93dbc3319d2807cfbcdb2",
+      "op_preimage": "meta-llama/llama-3.3-70b-instruct|sess-glasswork-demo-1|177|333|0.0002054400",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|5ef4b5d39583be4c01800244f33d5220e90e5f870ba93dbc3319d2807cfbcdb2",
+      "op_leaf": "33ac410e304d73d7ccc1221c093dd6c9a80788302c147932a6e99d10db721a04",
+      "content_leaf": "35a2a1222651b149263228066cce7b8453ede01e4f913da0267e7dfa08daabcc",
+      "output_text": "[\n  {\n    \"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"Photosynthesis takes place mainly in the chloroplasts.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"Chloroplasts contain the green pigment chlorophyll.\",\n    \"supporting_span\": \"which contain the green pigment chlorophyll\"\n  },\n  {\n    \"claim\": \"Water molecules are split during the light-dependent reactions.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The light-dependent reactions release oxygen as a byproduct.\",\n    \"supporting_span\": \"releasing oxygen as a byproduct\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "meta_llama_llama_3_3_70b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "item_id": "doc-water-cycle",
+      "output": [],
+      "precision": 0,
+      "recall": 0,
+      "f1": 0,
+      "tp": 0,
+      "asserted": 0,
+      "gold_n": 8,
+      "tokens_in": 166,
+      "tokens_out": 282,
+      "usd_cost": 0.00010684,
+      "cost_source": "measured",
+      "latency_ms": 13100,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "33117baedfe321aed5fcacf7572966ada77fd58f0f2ccb39651f572a3ae5afe4",
+      "op_preimage": "meta-llama/llama-3.3-70b-instruct|sess-glasswork-demo-1|166|282|0.0001068400",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|33117baedfe321aed5fcacf7572966ada77fd58f0f2ccb39651f572a3ae5afe4",
+      "op_leaf": "2f3d6ef48646500d56dbf1e50b16797dc716b4675566a6c99ca560af9eba3f34",
+      "content_leaf": "df0752ce03c23381993e4ff7decf7ce036eb3809b5974b7b43fe4be689b09ec0",
+      "output_text": "[\n  {\n    \"claim\": The water cycle describes how water moves continuously through the Earth and its atmosphere,\n    \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere\"\n  },\n  {\n    \"claim\": Evaporation turns liquid water from oceans and lakes into water vapor,\n    \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor\"\n  },\n  {\n    \"claim\": Condensation forms clouds as the vapor rises and cools,\n    \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds\"\n  },\n  {\n    \"claim\": Precipitation falls as rain or snow when the droplets grow heavy enough,\n    \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow\"\n  },\n  {\n    \"claim\": Water that reaches the ground can flow into rivers through runoff,\n    \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff\"\n  },\n  {\n    \"claim\": Water eventually returns to the ocean,\n    \"supporting_span\": \"before eventually returning to the ocean\"\n  },\n  {\n    \"claim\": The Sun provides the energy that drives the entire water cycle,\n    \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle\"\n  }\n]",
+      "parse_status": "invalid_json",
+      "note": "Model returned text that is not valid JSON — unusable by an automated extraction pipeline."
+    },
+    {
+      "id": "openai_gpt_oss_120b__doc-photosynthesis",
+      "model_id": "openai/gpt-oss-120b",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "Photosynthesis takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.625,
+      "f1": 0.7692,
+      "tp": 5,
+      "asserted": 5,
+      "gold_n": 8,
+      "tokens_in": 221,
+      "tokens_out": 539,
+      "usd_cost": 0.000099807,
+      "cost_source": "measured",
+      "latency_ms": 8778,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "48eff42ac10b829ec16d43a6546baba62fff324258a27a8d64415c3d00251732",
+      "op_preimage": "openai/gpt-oss-120b|sess-glasswork-demo-1|221|539|0.0000998070",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|48eff42ac10b829ec16d43a6546baba62fff324258a27a8d64415c3d00251732",
+      "op_leaf": "6c1fe2faa7683b1aef4dea99addc14ecdbe4bd32c65f1587a8cd06e08dc77063",
+      "content_leaf": "3053a933c2d9e3c1b17fd35c9b3309de7c4cd5faccc1eb96b39b599d5671fda5",
+      "output_text": "[\n  {\n    \"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"Photosynthesis takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "openai_gpt_oss_120b__doc-water-cycle",
+      "model_id": "openai/gpt-oss-120b",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "grounded": true
+        },
+        {
+          "claim": "Condensation forms clouds as vapor rises and cools.",
+          "supporting_span": "As the vapor rises and cools, condensation forms clouds.",
+          "grounded": true
+        },
+        {
+          "claim": "Precipitation falls as rain or snow when droplets grow heavy enough.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water that reaches the ground can flow into rivers through runoff before eventually returning to the ocean.",
+          "supporting_span": "Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.",
+          "grounded": true
+        },
+        {
+          "claim": "The Sun provides the energy that drives the entire water cycle.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "tp": 6,
+      "asserted": 6,
+      "gold_n": 8,
+      "tokens_in": 211,
+      "tokens_out": 536,
+      "usd_cost": 0.000098927,
+      "cost_source": "measured",
+      "latency_ms": 8349,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "ceb628a53d70e35fc6840f67baf0fcf2ef05a35befc9975ffafba59a034cd131",
+      "op_preimage": "openai/gpt-oss-120b|sess-glasswork-demo-1|211|536|0.0000989270",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|ceb628a53d70e35fc6840f67baf0fcf2ef05a35befc9975ffafba59a034cd131",
+      "op_leaf": "0ae5b757254c996b04d24ac558a0ff59a54c7428f0e63b1c159a34ac55f396c7",
+      "content_leaf": "26d509aa20a5ada920587c11bba540434eae0a602a9b919aec1ed69dbdc3875e",
+      "output_text": "[\n  {\n    \"claim\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\",\n    \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"\n  },\n  {\n    \"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\",\n    \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\"\n  },\n  {\n    \"claim\": \"Condensation forms clouds as vapor rises and cools.\",\n    \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds.\"\n  },\n  {\n    \"claim\": \"Precipitation falls as rain or snow when droplets grow heavy enough.\",\n    \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"\n  },\n  {\n    \"claim\": \"Water that reaches the ground can flow into rivers through runoff before eventually returning to the ocean.\",\n    \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff, before eventually returning to the ocean.\"\n  },\n  {\n    \"claim\": \"The Sun provides the energy that drives the entire water cycle.\",\n    \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "qwen_qwen3_235b_a22b_2507__doc-photosynthesis",
+      "model_id": "qwen/qwen3-235b-a22b-2507",
+      "item_id": "doc-photosynthesis",
+      "output": [
+        {
+          "claim": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "supporting_span": "Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.",
+          "grounded": true
+        },
+        {
+          "claim": "Photosynthesis takes place mainly in the chloroplasts.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "Chloroplasts contain the green pigment chlorophyll.",
+          "supporting_span": "It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.",
+          "grounded": true
+        },
+        {
+          "claim": "During the light-dependent reactions, water molecules are split.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "Oxygen is released as a byproduct during the light-dependent reactions.",
+          "supporting_span": "During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.",
+          "grounded": true
+        },
+        {
+          "claim": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "supporting_span": "The Calvin cycle uses carbon dioxide from the air to build glucose.",
+          "grounded": true
+        },
+        {
+          "claim": "The overall reaction of photosynthesis converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "supporting_span": "The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.875,
+      "f1": 0.9333,
+      "tp": 7,
+      "asserted": 7,
+      "gold_n": 8,
+      "tokens_in": 174,
+      "tokens_out": 360,
+      "usd_cost": 0.00005166,
+      "cost_source": "measured",
+      "latency_ms": 21108,
+      "prompt_sha256": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed",
+      "output_sha256": "e412123f0d5d223a328267e6bcb3a0e1142a0ae94d62cb89ab917024aa6f1dc8",
+      "op_preimage": "qwen/qwen3-235b-a22b-2507|sess-glasswork-demo-1|174|360|0.0000516600",
+      "content_preimage": "d46a8218d0357af87cd61f1613b001c4bb07c6f0fde74469bc191d99ab992aed|e412123f0d5d223a328267e6bcb3a0e1142a0ae94d62cb89ab917024aa6f1dc8",
+      "op_leaf": "1822316205388c2d3f6825d8de0066b5107d963aead2627ee10c4c2bdf622fe6",
+      "content_leaf": "e9e0c2fbdc9a51860ff3ceee5da46588961391fbe2c17e0aa92c48eaa2f826be",
+      "output_text": "[\n  {\n    \"claim\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\",\n    \"supporting_span\": \"Photosynthesis is the process by which green plants, algae, and some bacteria convert light energy into chemical energy.\"\n  },\n  {\n    \"claim\": \"Photosynthesis takes place mainly in the chloroplasts.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"Chloroplasts contain the green pigment chlorophyll.\",\n    \"supporting_span\": \"It takes place mainly in the chloroplasts, which contain the green pigment chlorophyll.\"\n  },\n  {\n    \"claim\": \"During the light-dependent reactions, water molecules are split.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"Oxygen is released as a byproduct during the light-dependent reactions.\",\n    \"supporting_span\": \"During the light-dependent reactions, water molecules are split, releasing oxygen as a byproduct.\"\n  },\n  {\n    \"claim\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\",\n    \"supporting_span\": \"The Calvin cycle uses carbon dioxide from the air to build glucose.\"\n  },\n  {\n    \"claim\": \"The overall reaction of photosynthesis converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\",\n    \"supporting_span\": \"The overall reaction converts six molecules of carbon dioxide and six molecules of water into one molecule of glucose and six molecules of oxygen.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    },
+    {
+      "id": "qwen_qwen3_235b_a22b_2507__doc-water-cycle",
+      "model_id": "qwen/qwen3-235b-a22b-2507",
+      "item_id": "doc-water-cycle",
+      "output": [
+        {
+          "claim": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "supporting_span": "The water cycle describes how water moves continuously through the Earth and its atmosphere.",
+          "grounded": true
+        },
+        {
+          "claim": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "supporting_span": "Evaporation turns liquid water from oceans and lakes into water vapor.",
+          "grounded": true
+        },
+        {
+          "claim": "As the vapor rises and cools, condensation forms clouds.",
+          "supporting_span": "As the vapor rises and cools, condensation forms clouds.",
+          "grounded": true
+        },
+        {
+          "claim": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "supporting_span": "When the droplets grow heavy enough, precipitation falls as rain or snow.",
+          "grounded": true
+        },
+        {
+          "claim": "Water that reaches the ground can flow into rivers through runoff.",
+          "supporting_span": "Water that reaches the ground can flow into rivers through runoff,",
+          "grounded": true
+        },
+        {
+          "claim": "Water eventually returns to the ocean.",
+          "supporting_span": "before eventually returning to the ocean.",
+          "grounded": true
+        },
+        {
+          "claim": "The Sun provides the energy that drives the entire water cycle.",
+          "supporting_span": "The Sun provides the energy that drives the entire water cycle.",
+          "grounded": true
+        }
+      ],
+      "precision": 1,
+      "recall": 0.875,
+      "f1": 0.9333,
+      "tp": 7,
+      "asserted": 7,
+      "gold_n": 8,
+      "tokens_in": 164,
+      "tokens_out": 289,
+      "usd_cost": 0.0002062,
+      "cost_source": "measured",
+      "latency_ms": 5553,
+      "prompt_sha256": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23",
+      "output_sha256": "d83cdfe92b8ac84075a6172656c297e2ca611bb76dd7a2d458823ff5fd05fb55",
+      "op_preimage": "qwen/qwen3-235b-a22b-2507|sess-glasswork-demo-1|164|289|0.0002062000",
+      "content_preimage": "26e7fedc159029f18672f4b72416dc165368ee1c7afb3f3b47fb57791ce8bf23|d83cdfe92b8ac84075a6172656c297e2ca611bb76dd7a2d458823ff5fd05fb55",
+      "op_leaf": "36ffa37f5844b33a46b0d66f64f766b2d5c56f7affe8efff651763fb2db2480f",
+      "content_leaf": "c00e6e67192907db52a90f1d9d7311987885739e5dc082fec92a3e5be2c4fd7c",
+      "output_text": "[\n  {\n    \"claim\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\",\n    \"supporting_span\": \"The water cycle describes how water moves continuously through the Earth and its atmosphere.\"\n  },\n  {\n    \"claim\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\",\n    \"supporting_span\": \"Evaporation turns liquid water from oceans and lakes into water vapor.\"\n  },\n  {\n    \"claim\": \"As the vapor rises and cools, condensation forms clouds.\",\n    \"supporting_span\": \"As the vapor rises and cools, condensation forms clouds.\"\n  },\n  {\n    \"claim\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\",\n    \"supporting_span\": \"When the droplets grow heavy enough, precipitation falls as rain or snow.\"\n  },\n  {\n    \"claim\": \"Water that reaches the ground can flow into rivers through runoff.\",\n    \"supporting_span\": \"Water that reaches the ground can flow into rivers through runoff,\"\n  },\n  {\n    \"claim\": \"Water eventually returns to the ocean.\",\n    \"supporting_span\": \"before eventually returning to the ocean.\"\n  },\n  {\n    \"claim\": \"The Sun provides the energy that drives the entire water cycle.\",\n    \"supporting_span\": \"The Sun provides the energy that drives the entire water cycle.\"\n  }\n]",
+      "parse_status": "ok",
+      "note": null
+    }
+  ],
+  "custody_leaves": [
+    {
+      "run_id": "meta_llama_llama_3_2_1b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.2-1b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "cd7a3aa153561595d86e3bbc9fe66012a0c7eb2bc9790d559eca6a4580b8c410",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_2_1b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.2-1b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "cfa1f9f169d604e4d97daf10385eeb4cbe4ab0d46208e2cf9b49756e5e35d875",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_2_1b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.2-1b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "4aee1b212758653de2ee9c799bb1d120e655c343bdf9b99a12c7951cdb1ee6e2",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_2_1b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.2-1b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "22d7735e3e55f774589a4e17d96ec0802f68635d52412fd04891926f2b651347",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_2_3b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.2-3b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "d9ad23e4218a110ca64bb8f818fa58b9cb417884c434d1c570e329ad2e9e127e",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_2_3b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.2-3b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "47132ce0d84b376a4097adc71c113f0587c05a4cc582a8a010ba54eefffcf54a",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_2_3b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.2-3b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "2e86a834f670e0bdc5a2436264040d988b89e2f38002214328beae5b4268533e",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_2_3b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.2-3b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "80ae637622af20f5319aa68abfda869bc2dacc0cec90a74310e416d53612123e",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_1_8b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "e1cc0eaa9a6972213a2f1e17eec684261163831366c67fa72af2d80e4b42aa6c",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_1_8b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "d28f9e39afe0793d5f41eee3233ec8e894e20894884029965db84c29ff46831c",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_1_8b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "29561f26b35f4fdaa0ba9fd53ecfabf58cc0f3c3ec755e55476cba0b5d4be123",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_1_8b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "04e6941ebd753c5859e26d12d6ddd188fb4d1f072d6e8409f4fcf85e630b11b6",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_8b__doc-photosynthesis",
+      "model_id": "qwen/qwen3-8b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "023e419577a337d62af0a145236f52930321e7f3af3a0c0a0b6f1a9859405304",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_8b__doc-photosynthesis",
+      "model_id": "qwen/qwen3-8b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "d28f9e39afe0793d5f41eee3233ec8e894e20894884029965db84c29ff46831c",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_8b__doc-water-cycle",
+      "model_id": "qwen/qwen3-8b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "c522b21e7b7589bcfc3017fc1c0bf2c7a2ad4d3b018cd13f015b6b6988a9e413",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_8b__doc-water-cycle",
+      "model_id": "qwen/qwen3-8b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "e1c90c2fb4b6e2d7b14076ed0bf6625d3bfaec94860bee53419f91c290f8fd75",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "openai_gpt_oss_20b__doc-photosynthesis",
+      "model_id": "openai/gpt-oss-20b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "4c965a258b8f4b5020107bc1aa42963bba7c17526a603a3f22843b13d118e9ef",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "openai_gpt_oss_20b__doc-photosynthesis",
+      "model_id": "openai/gpt-oss-20b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "d28f9e39afe0793d5f41eee3233ec8e894e20894884029965db84c29ff46831c",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "openai_gpt_oss_20b__doc-water-cycle",
+      "model_id": "openai/gpt-oss-20b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "250242d46b861dd78d4ee8a92ab653dc373516883da6067d95eff95b68d27f97",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "openai_gpt_oss_20b__doc-water-cycle",
+      "model_id": "openai/gpt-oss-20b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "04e6941ebd753c5859e26d12d6ddd188fb4d1f072d6e8409f4fcf85e630b11b6",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "microsoft_phi_4__doc-photosynthesis",
+      "model_id": "microsoft/phi-4",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "edf8b316d3d935681f369542d8265419bcce3d3285b1c686f79825cc934e5801",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "microsoft_phi_4__doc-photosynthesis",
+      "model_id": "microsoft/phi-4",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "a66886c610ce96edd63ea2c2fdb6fe17fd728012a73117e803f856d845db5c9f",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "microsoft_phi_4__doc-water-cycle",
+      "model_id": "microsoft/phi-4",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "d544234badecef3c018d23214d4e25390ecebc1dba77a8fc993e54ace8eb803b",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "microsoft_phi_4__doc-water-cycle",
+      "model_id": "microsoft/phi-4",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "fe700c78650f2ac634ea4de8f44a7e7015787c291c27f3d204820a59abbf0798",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_14b__doc-photosynthesis",
+      "model_id": "qwen/qwen3-14b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "c6c3e41ff6c9503ca00ca0689a170bf1970f78c118b8f9c8df0f56bd39ebabf6",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_14b__doc-photosynthesis",
+      "model_id": "qwen/qwen3-14b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "3053a933c2d9e3c1b17fd35c9b3309de7c4cd5faccc1eb96b39b599d5671fda5",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_14b__doc-water-cycle",
+      "model_id": "qwen/qwen3-14b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "6f3e2642bc34de01fb009b65af594cb9adf4754f71535c2ad717d7b1e4406278",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_14b__doc-water-cycle",
+      "model_id": "qwen/qwen3-14b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "6d1a5ccd13e5620f46cd511b6a88702759698bee4c336cfe1c44f9daaa769890",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "google_gemma_3_27b_it__doc-photosynthesis",
+      "model_id": "google/gemma-3-27b-it",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "431b4c4c3b68f7e3ef713debb398f77a7739bde8e7b4321ea2ad9e24f79a9eea",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "google_gemma_3_27b_it__doc-photosynthesis",
+      "model_id": "google/gemma-3-27b-it",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "a64b280ea5fe43b5d926535435b9605a224921d86c71a15bc175161e637aa206",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "google_gemma_3_27b_it__doc-water-cycle",
+      "model_id": "google/gemma-3-27b-it",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "ca01f8833a6aeae40b5af4f6ce0e6841a3392cfcda10b2e53518f9d5421b2d2a",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "google_gemma_3_27b_it__doc-water-cycle",
+      "model_id": "google/gemma-3-27b-it",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "108e245e07272b64067d7b250765979f1d8d80aa048899a8871f70e1331dcd66",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_32b__doc-photosynthesis",
+      "model_id": "qwen/qwen3-32b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "4f6348897bf73c636d703a7bea1893641c48a1502178dd38c15ddae1bf15d60b",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_32b__doc-photosynthesis",
+      "model_id": "qwen/qwen3-32b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "390461569f511766f92c4810d8081f43d6cbeea85e0320aff5003651ceeca04c",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_32b__doc-water-cycle",
+      "model_id": "qwen/qwen3-32b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "65a88dc0f1850b105c4bc5f9657fdf988a8646ccc17e7b41b7a359f4ef78aad9",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_32b__doc-water-cycle",
+      "model_id": "qwen/qwen3-32b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "04e6941ebd753c5859e26d12d6ddd188fb4d1f072d6e8409f4fcf85e630b11b6",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_3_70b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "33ac410e304d73d7ccc1221c093dd6c9a80788302c147932a6e99d10db721a04",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_3_70b_instruct__doc-photosynthesis",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "35a2a1222651b149263228066cce7b8453ede01e4f913da0267e7dfa08daabcc",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_3_70b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "2f3d6ef48646500d56dbf1e50b16797dc716b4675566a6c99ca560af9eba3f34",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "meta_llama_llama_3_3_70b_instruct__doc-water-cycle",
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "df0752ce03c23381993e4ff7decf7ce036eb3809b5974b7b43fe4be689b09ec0",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "openai_gpt_oss_120b__doc-photosynthesis",
+      "model_id": "openai/gpt-oss-120b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "6c1fe2faa7683b1aef4dea99addc14ecdbe4bd32c65f1587a8cd06e08dc77063",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "openai_gpt_oss_120b__doc-photosynthesis",
+      "model_id": "openai/gpt-oss-120b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "3053a933c2d9e3c1b17fd35c9b3309de7c4cd5faccc1eb96b39b599d5671fda5",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "openai_gpt_oss_120b__doc-water-cycle",
+      "model_id": "openai/gpt-oss-120b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "0ae5b757254c996b04d24ac558a0ff59a54c7428f0e63b1c159a34ac55f396c7",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "openai_gpt_oss_120b__doc-water-cycle",
+      "model_id": "openai/gpt-oss-120b",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "26d509aa20a5ada920587c11bba540434eae0a602a9b919aec1ed69dbdc3875e",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_235b_a22b_2507__doc-photosynthesis",
+      "model_id": "qwen/qwen3-235b-a22b-2507",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 0,
+      "sha256": "1822316205388c2d3f6825d8de0066b5107d963aead2627ee10c4c2bdf622fe6",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_235b_a22b_2507__doc-photosynthesis",
+      "model_id": "qwen/qwen3-235b-a22b-2507",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 1,
+      "sha256": "e9e0c2fbdc9a51860ff3ceee5da46588961391fbe2c17e0aa92c48eaa2f826be",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_235b_a22b_2507__doc-water-cycle",
+      "model_id": "qwen/qwen3-235b-a22b-2507",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "operational",
+      "seq": 2,
+      "sha256": "36ffa37f5844b33a46b0d66f64f766b2d5c56f7affe8efff651763fb2db2480f",
+      "parent_sha256": null
+    },
+    {
+      "run_id": "qwen_qwen3_235b_a22b_2507__doc-water-cycle",
+      "model_id": "qwen/qwen3-235b-a22b-2507",
+      "session_id": "sess-glasswork-demo-1",
+      "leaf_type": "content",
+      "seq": 3,
+      "sha256": "c00e6e67192907db52a90f1d9d7311987885739e5dc082fec92a3e5be2c4fd7c",
+      "parent_sha256": null
+    }
+  ],
+  "custody_roots": [
+    {
+      "model_id": "meta-llama/llama-3.2-1b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "c950ef0f553019b3df6872170eade03bbea92c4d61553ef9fe4ed5acf3803b90",
+      "leaf_count": 4,
+      "tampered": false
+    },
+    {
+      "model_id": "meta-llama/llama-3.2-3b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "68a0758543333c09fa8e4919e1739f02c74bd94c1b4d7b046e801550ec82f4ee",
+      "leaf_count": 4,
+      "tampered": false
+    },
+    {
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "a8cfd4310058715c51ad389738e4a162f940985b4268b57bdfb21c41942c05e0",
+      "leaf_count": 4,
+      "tampered": false
+    },
+    {
+      "model_id": "qwen/qwen3-8b",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "9f3f72e1d2346aeae0b5fb02b302cb05b83c26510b32d42dc632c29debd2979e",
+      "leaf_count": 4,
+      "tampered": false
+    },
+    {
+      "model_id": "openai/gpt-oss-20b",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "4d7587813c05f55b08f01a8993b702469091150c95a808889d4d02a5912b1b50",
+      "leaf_count": 4,
+      "tampered": true
+    },
+    {
+      "model_id": "microsoft/phi-4",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "0e9b3c2be5108f450c25eb3f1bdb4c75dc25e1063f9d6cdbbe98b12a1ba3cac9",
+      "leaf_count": 4,
+      "tampered": false
+    },
+    {
+      "model_id": "qwen/qwen3-14b",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "81d1fa9399fdbe7121210dc748dc888370e38180156667414ae7ed3c9ecfe231",
+      "leaf_count": 4,
+      "tampered": false
+    },
+    {
+      "model_id": "google/gemma-3-27b-it",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "f4feaf176782b9aa2732d76b3c0f673c6ff68b524e25e59b7952491194e63136",
+      "leaf_count": 4,
+      "tampered": false
+    },
+    {
+      "model_id": "qwen/qwen3-32b",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "f0d3f86a416d45ccfab693e9d83acd36d764d076f4f41ceaeab208be00f886a3",
+      "leaf_count": 4,
+      "tampered": false
+    },
+    {
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "debd569e061140bd8f57dbaac108da8ea445cde302054601e29b0f05c3abf5eb",
+      "leaf_count": 4,
+      "tampered": false
+    },
+    {
+      "model_id": "openai/gpt-oss-120b",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "3e8a224c1b6c5cc39bba71fe432e5dd1638ca48c2cf24b949e96474696b539ed",
+      "leaf_count": 4,
+      "tampered": false
+    },
+    {
+      "model_id": "qwen/qwen3-235b-a22b-2507",
+      "session_id": "sess-glasswork-demo-1",
+      "root_sha256": "118c2d92380ac0f8a759f73babdb792950e05508763da545e6396f7db46d7c93",
+      "leaf_count": 4,
+      "tampered": false
+    }
+  ],
+  "modelAgg": [
+    {
+      "model_id": "meta-llama/llama-3.2-1b-instruct",
+      "family": "llama",
+      "params_b": 1,
+      "tier": "small",
+      "usd_per_1m_in": 0.0324,
+      "usd_per_1m_out": 0.2412,
+      "precision": 1,
+      "recall": 0.5,
+      "f1": 0.6667,
+      "usd_total": 0.000094311,
+      "passes": false
+    },
+    {
+      "model_id": "meta-llama/llama-3.2-3b-instruct",
+      "family": "llama",
+      "params_b": 3,
+      "tier": "small",
+      "usd_per_1m_in": 0.06,
+      "usd_per_1m_out": 0.396,
+      "precision": 1,
+      "recall": 0.6875,
+      "f1": 0.8148,
+      "usd_total": 0.0001852124,
+      "passes": false
+    },
+    {
+      "model_id": "meta-llama/llama-3.1-8b-instruct",
+      "family": "llama",
+      "params_b": 8,
+      "tier": "small",
+      "usd_per_1m_in": 0.024,
+      "usd_per_1m_out": 0.036,
+      "precision": 1,
+      "recall": 0.6875,
+      "f1": 0.8148,
+      "usd_total": 0.00002328,
+      "passes": false
+    },
+    {
+      "model_id": "qwen/qwen3-8b",
+      "family": "qwen",
+      "params_b": 8,
+      "tier": "small",
+      "usd_per_1m_in": 0.1404,
+      "usd_per_1m_out": 0.546,
+      "precision": 1,
+      "recall": 0.6875,
+      "f1": 0.8148,
+      "usd_total": 0.0006624409999999999,
+      "passes": false
+    },
+    {
+      "model_id": "openai/gpt-oss-20b",
+      "family": "gpt-oss",
+      "params_b": 20,
+      "tier": "mid",
+      "usd_per_1m_in": 0.0348,
+      "usd_per_1m_out": 0.168,
+      "precision": 1,
+      "recall": 0.6875,
+      "f1": 0.8148,
+      "usd_total": 0.00022993,
+      "passes": false
+    },
+    {
+      "model_id": "microsoft/phi-4",
+      "family": "phi",
+      "params_b": 14,
+      "tier": "mid",
+      "usd_per_1m_in": 0.084,
+      "usd_per_1m_out": 0.168,
+      "precision": 1,
+      "recall": 0.6875,
+      "f1": 0.8148,
+      "usd_total": 0.00010164000000000001,
+      "passes": false
+    },
+    {
+      "model_id": "qwen/qwen3-14b",
+      "family": "qwen",
+      "params_b": 14,
+      "tier": "mid",
+      "usd_per_1m_in": 0.12,
+      "usd_per_1m_out": 0.288,
+      "precision": 1,
+      "recall": 0.6875,
+      "f1": 0.8148,
+      "usd_total": 0.0007856124999999999,
+      "passes": false
+    },
+    {
+      "model_id": "google/gemma-3-27b-it",
+      "family": "gemma",
+      "params_b": 27,
+      "tier": "mid",
+      "usd_per_1m_in": 0.096,
+      "usd_per_1m_out": 0.192,
+      "precision": 1,
+      "recall": 0.9375,
+      "f1": 0.9677,
+      "usd_total": 0.000163231,
+      "passes": true
+    },
+    {
+      "model_id": "qwen/qwen3-32b",
+      "family": "qwen",
+      "params_b": 32,
+      "tier": "mid",
+      "usd_per_1m_in": 0.096,
+      "usd_per_1m_out": 0.336,
+      "precision": 1,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "usd_total": 0.00048444,
+      "passes": true
+    },
+    {
+      "model_id": "meta-llama/llama-3.3-70b-instruct",
+      "family": "llama",
+      "params_b": 70,
+      "tier": "large",
+      "usd_per_1m_in": 0.12,
+      "usd_per_1m_out": 0.384,
+      "precision": 1,
+      "recall": 0.4375,
+      "f1": 0.6087,
+      "usd_total": 0.00031228,
+      "passes": false
+    },
+    {
+      "model_id": "openai/gpt-oss-120b",
+      "family": "gpt-oss",
+      "params_b": 120,
+      "tier": "large",
+      "usd_per_1m_in": 0.0432,
+      "usd_per_1m_out": 0.216,
+      "precision": 1,
+      "recall": 0.6875,
+      "f1": 0.8148,
+      "usd_total": 0.000198734,
+      "passes": false
+    },
+    {
+      "model_id": "qwen/qwen3-235b-a22b-2507",
+      "family": "qwen",
+      "params_b": 235,
+      "tier": "large",
+      "usd_per_1m_in": 0.108,
+      "usd_per_1m_out": 0.12,
+      "precision": 1,
+      "recall": 0.875,
+      "f1": 0.9333,
+      "usd_total": 0.00025786,
+      "passes": true
+    }
+  ],
+  "decision": {
+    "chosen_model": "google/gemma-3-27b-it",
+    "reason": "cheapest model meeting precision>=0.80 and recall>=0.75 on this corpus",
+    "usd_total": 0.000163231
+  }
+}
