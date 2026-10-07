@@ -111,3 +111,5 @@ Manuscript CC-BY-4.0 / code Apache-2.0. This demo uses only the published method
 ## Honest ceilings
 
 Accuracy is on **this** task/corpus, not universal. Custody proves provenance, not correctness or reproducibility of the model. Cost is Butterbase-reported (auditable, not an independent benchmark). An LLM verdict is a signal, never a custody proof.
+
+**License:** Unless otherwise explicitly licensed, original Biobitworks material in this repository is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/); third-party components remain under their respective licenses.
